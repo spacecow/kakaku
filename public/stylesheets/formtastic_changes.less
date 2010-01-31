@@ -1,0 +1,23 @@
+@label_margin: 1em;
+@label_width: 12em;
+
+form.formtastic{
+	fieldset.inputs{
+		ol{
+			width:60em;
+			li{
+				label{
+					width:@label_width;
+					text-align:right;
+					padding-right:@label_margin;
+				}
+				input{
+					width:20em;
+				}
+			}
+		}
+	}
+	fieldset.buttons{
+		padding-left:@label_width+@label_margin;
+	}
+}

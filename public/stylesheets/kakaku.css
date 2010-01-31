@@ -1,0 +1,24 @@
+.global_a {
+  text-decoration: none;
+  color: #1f7fd0;
+  padding: 0 1px 0 1px;
+  font-size: 0.8em;
+}
+.global_a:hover {
+  text-decoration: none;
+  background: #1f7fd0;
+  color: #ffffff;
+  padding: 0 1px 0 1px;
+}
+a {
+  text-decoration: none;
+  color: #1f7fd0;
+  padding: 0 1px 0 1px;
+  font-size: 0.8em;
+}
+a:hover {
+  text-decoration: none;
+  background: #1f7fd0;
+  color: #ffffff;
+  padding: 0 1px 0 1px;
+}

@@ -1,0 +1,16 @@
+@main_bg: 					#fff;
+@link_fg:						#1F7FD0;
+
+.global_a{
+	text-decoration: none;	
+	color: @link_fg;
+	padding:0 1px 0 1px;
+	font-size:0.8em;
+	:hover{
+	  text-decoration: none;	
+		background: @link_fg;
+		color: @main_bg;
+		padding:0 1px 0 1px;
+	}
+}
+a { .global_a; }
