@@ -3,11 +3,12 @@
 
 class ApplicationController < ActionController::Base
   include Authentication
+	rescue_from CanCan::AccessDenied do |exception|
+	  flash[:error] = t('error.access_denied')
+	  redirect_to root_path		
+	end
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   layout 'themes'
-
-  # Scrub sensitive parameters from your log
-  # filter_parameter_logging :password
 end

@@ -3,6 +3,8 @@
 
 en:
   email_address: "Email Address"
+  error:
+    access_denied: "Sorry, you are not allowed to access that page."
   password: "Password"
   password_confirmation: "Password Confirmation"
   signup: "Sign up"
