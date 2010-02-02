@@ -1,9 +1,7 @@
-<% title "Sign up" %>
+<% title "Edit User" %>
 <% subtitle "" %>
 
-<p>Already have an account? <%= link_to "Log in", login_path %>.</p>
-
-<% semantic_form_for @user do |f| %>
+<% semantic_form_for [:admin,@user] do |f| %>
 	<% f.inputs do %>
 		<%= f.input :username, :label => I18n.t(:username) %>
 		<%= f.input :email, :label => t(:email_address) %>
@@ -11,7 +9,6 @@
 		<%= f.input :password_confirmation, :label => t(:password_confirmation) %>
 	<% end %>
 	<% f.buttons do %>
-		<%= f.commit_button t(:signup) %>
+		<%= f.commit_button t(:update) %>
 	<% end %>	
 <% end %>
-
