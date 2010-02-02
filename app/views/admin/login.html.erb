@@ -1,0 +1,14 @@
+<% title "Admin log in" %>
+<% subtitle "Fill in the form to log in" %>
+
+<% form_tag admin_login_path do %>
+  <p>
+    <%= label_tag :username, "Username" %><br />
+    <%= text_field_tag :username, params[:login] %>
+  </p>
+  <p>
+    <%= label_tag :password %><br />
+    <%= password_field_tag :password %>
+  </p>
+  <p><%= submit_tag "Log in" %></p>
+<% end %>

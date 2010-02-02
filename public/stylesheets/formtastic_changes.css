@@ -1,8 +1,12 @@
 form.formtastic fieldset.inputs ol { width: 60em; }
 form.formtastic fieldset.inputs ol li label {
+  float: left;
   width: 12em;
   text-align: right;
   padding-right: 1em;
 }
-form.formtastic fieldset.inputs ol li input { width: 20em; }
+form.formtastic fieldset.inputs ol li input {
+  float: left;
+  width: 20em;
+}
 form.formtastic fieldset.buttons { padding-left: 13em; }

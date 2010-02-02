@@ -1,5 +1,5 @@
 Scenario Outline: Log in
-Given a user exists with username: "johan", email: "jsveholm@gmail.com"
+Given a user exists with username: "johan", email: "jsveholm@gmail.com", password: "secret"
 When I go to the login page
 Then I should see "Log in" as title
 When I fill in "Username or Email Address" with "<login>"
