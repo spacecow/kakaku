@@ -4,3 +4,10 @@ Given /^I am logged in as "([^\"]*)"$/ do |username|
 	And "I fill in \"Password\" with \"secret\""
 	And "I press \"Log in\""
 end
+
+Given /^I am logged in as admin "([^\"]*)"$/ do |username|
+	Given "I go to the admin login page"
+	And "I fill in \"Username\" with \"#{username}\""
+	And "I fill in \"Password\" with \"secret\""
+	And "I press \"Log in\""
+end

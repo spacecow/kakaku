@@ -1,11 +1,15 @@
 development:
   username: test
   password: test
-
+ 
 test:
-  username: test
-  password: test
-
+  username: johan
+  password: secret
+ 
 production:
   username: test
   password: test
+  
+cucumber:
+  username: johan
+  password: secret

@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def current_user
-		@user ||= User.new || User.find( session[:user_id] )
+		@user ||= User.exists?( session[:user_id] ) ? User.find( session[:user_id] ) : User.new
 		@user.roles_mask = 1 if admin?
 		@user
 	end

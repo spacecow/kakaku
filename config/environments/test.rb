@@ -28,3 +28,7 @@ config.action_mailer.delivery_method = :test
 # config.active_record.schema_format = :sql
 
 config.gem 'rspec-rails', :version => '>= 1.3.2', :lib => false unless File.directory?(File.join(Rails.root, 'vendor/plugins/rspec-rails'))
+config.gem 'cucumber', :lib => false
+config.gem 'webrat', :lib => false
+config.gem 'rspec', :lib => false
+config.gem 'thoughtbot-factory_girl', :lib    => false, :source => "http://gems.github.com"

@@ -1,5 +1,9 @@
 class AdminController < ApplicationController
   def login
+  	if admin?
+  		flash[:error] = "You are already logged in as admin."
+  		redirect_to admin_users_path
+		end
   	if request.post?
 			@username = params[:username]
 			@password = params[:password]
@@ -8,7 +12,7 @@ class AdminController < ApplicationController
 				flash[:notice] = t('notice.logged_in',:object=>t(:admin).downcase)
 				redirect_to admin_users_path
 			else
-				flash.now[:notice] = "Invalid username/password."
+				flash.now[:error] = "Invalid username or password."
 			end
 		end
   end

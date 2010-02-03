@@ -32,6 +32,7 @@ Cucumber::Rails::World.use_transactional_fixtures = true
 # of your scenarios, as this makes it hard to discover errors in your application.
 ActionController::Base.allow_rescue = false
 
+require 'factory_girl'
 require 'cucumber'
 # Comment out the next line if you don't want Cucumber Unicode support
 require 'cucumber/formatter/unicode'
