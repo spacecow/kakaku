@@ -12,7 +12,7 @@ class Admin::UsersController < ApplicationController
 	def update
 		@user = User.find( params[:id] )
 		if @user.update_attributes( params[:user] )
-			flash[:notice] = "Updated user successfully."
+			flash[:notice] = t('notice.updated', :object=>t(:user))
 			redirect_to admin_users_path
 		else
 			render :action => :edit
@@ -22,7 +22,7 @@ class Admin::UsersController < ApplicationController
 	def destroy
 		@user = User.find( params[:id] )
 		@user.destroy
-		flash[:notice] = "Deleted user successfully."
+		flash[:notice] = t('notice.updated', :object=>t(:user))
 		redirect_to admin_users_path
 	end
 end

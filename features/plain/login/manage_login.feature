@@ -21,7 +21,8 @@ When I fill in "Username" with "johan"
 	And I fill in "Password Confirmation" with "secret"
 	And I press "Sign up"
 Then I should be redirected to the root page
-And I should see "Thank you for signing up! You are now logged in." as notice flash message
+	And I should see "Thank you for signing up! You are now logged in." as notice flash message
+	And 1 users should exist with username: "johan", email: "jsveholm@gmail.com"
 
 Scenario: Log out
 Given a user exists with username: "johan", email: "jsveholm@gmail.com"
@@ -44,26 +45,11 @@ Then the "Username or Email Address" field should contain "ishigani"
 Scenario: If a user inputs a wrong url, he should be taken to the root page (NOT IMPLEMENTED)
 Given not implemented
 
+Scenario: Change how current_user is handled, now current_user can easily be changed by every user (NOT IMPLEMENTED)
+Given not implemented
 
+Scenario: Users should not be able to get to other users mypage (NOT IMPLEMENTED)
+Given not implemented
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Scenario: Mypage and info page should not be the same (NOT IMPLEMENTED)
+Given not implemented

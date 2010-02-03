@@ -20,8 +20,8 @@ module NavigationHelpers
 		when /^the (?:error )?show page (?:for|of) (.+)$/
 			polymorphic_path( model($1) )
 			      
-		when /^the edit page (?:for|of) (.+)$/
-			edit_polymorphic_path( model($1) )
+		when /^the (?:(.+)\s)?edit page (?:for|of) (.+)$/
+			( $1 ? "/#{$1}" : "" ) + edit_polymorphic_path( model($2) )
 
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +

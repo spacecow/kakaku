@@ -11,3 +11,11 @@ Then(/^I should see "(.+)" table$/) do |category, table|
   html_table.map! { |r| r.map! { |c| c.gsub(/<.+?>/, '') } }
   table.diff!(html_table)
 end
+
+Then /^I should see options "([^\"]*)" within "([^\"]*)"$/ do |options, selector|
+	response.body.should have_selector( selector ) do |content|
+  	content.should have_selector( 'a' ) do |links|
+  		links.map{|e| e.inner_html.gsub(/<.+?>/, '')}.join(', ').should == options
+		end
+	end
+end

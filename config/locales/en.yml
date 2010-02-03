@@ -1,17 +1,35 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
+  actions: "Actions"
   admin: "Admin"
+  delete: "Delete"
+  edit: "Edit"
+  editing: "Editing {{object}}"
+  email: "Email"
   email_address: "Email Address"
-  error:
-    access_denied: "Sorry, you are not allowed to access that page."
+  listing: "Listing {{object}}"
   password: "Password"
   password_confirmation: "Password Confirmation"
+  show: "Info"
   signup: "Sign up"
   update: "Update"
+  user: "User"
   username: "Username"
   
+  error:
+    access_denied: "Sorry, you are not allowed to access that page."
+  message:
+    signup_thanks: "Thank you for signing up! You are now logged in."
+    sure?: "Are you sure?"
   notice:
+    created: "Successfully created {{object}}"
+    deleted: "Successfully deleted {{object}}"
     logged_in: "Successfully logged in as {{object}}."
     logged_out: "Successfully logged out {{object}}."
+    updated: "Successfully updated {{object}}"
+    
+  users:
+    title: "Users"
+    message:
+      edit: ""
+      index: "List of user accounts"
+      show: "Additional information will be listed here soon..."
