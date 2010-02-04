@@ -26,6 +26,6 @@ When I go to the admin login page
 Then I should be redirected to the admin users page
 	And I should see "You are already logged in as admin." as error flash message	
 	
-Scenario: The username is filled in if it is given in the url (NOT IMPLEMENTED)
+Scenario: The username is filled in if it is given in the url
 When I go to path "admin/login?username=ishigani"
 Then the "Username" field should contain "ishigani"

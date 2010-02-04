@@ -3,12 +3,12 @@
 
 <% form_tag admin_login_path do %>
   <p>
-    <%= label_tag :username, "Username" %><br />
+    <%= label_tag :username, t(:username) %><br />
     <%= text_field_tag :username, params[:username] %>
   </p>
   <p>
-    <%= label_tag :password %><br />
+    <%= label_tag :password, t(:password) %><br />
     <%= password_field_tag :password %>
   </p>
-  <p><%= submit_tag "Log in" %></p>
+  <p><%= submit_tag t(:login) %></p>
 <% end %>

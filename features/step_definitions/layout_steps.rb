@@ -19,5 +19,5 @@ Then /^I (should|should not) see "([^\"]*)" in the navigation bar$/ do |modal, l
 end
 
 Then /^I should see options "([^\"]*)" in the navigation bar$/ do |options|
-	Then "I should see opttions \"#{options}\" within \"ul#navigation\""
+	Then "I should see options \"#{options}\" within \"ul#navigation\""
 end

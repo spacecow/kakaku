@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def new
-  	unless current_user.new_record?
-  		flash[:error] = "You are already logged in."
+  	if logged_in?
+  		flash[:error] = t('error.logged_in')
   		redirect_to root_url
 		end
   end
@@ -10,17 +10,17 @@ class SessionsController < ApplicationController
     user = User.authenticate(params[:login], params[:password])
     if user
       session[:user_id] = user.id
-      flash[:notice] = "Logged in successfully."
+      flash[:notice] = t('notice.logged_in')
       redirect_to_target_or_default(root_url)
     else
-      flash.now[:error] = "Invalid login or password."
+      flash.now[:error] = t('error.invalid_login')
       render :action => 'new'
     end
   end
   
   def destroy
     session[:user_id] = nil
-    flash[:notice] = "You have been logged out."
+    flash[:notice] = t('notice.logged_out')
     redirect_to root_url
   end
 end

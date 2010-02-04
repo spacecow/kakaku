@@ -14,18 +14,18 @@
         </div>
         
         <ul id='navigation'>
-          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to t(:home), root_path %></li>
           <% if admin? %>
-          	<li><%= link_to "Log out <span class=\"small\">(admin)</span>", admin_logout_path %></li>
-          	<li><%= link_to "Users", admin_users_path %></li>
+          	<li><%= link_to t(:logout)+" <span class=\"small\">(admin)</span>", admin_logout_path %></li>
+          	<li><%= link_to t('users.title'), admin_users_path %></li>
           
           <% elsif session[:user_id].blank? %>
-            <li><%= link_to "Log in", login_path %></li>
-            <li><%= link_to "Contact us", root_path %></li>
+            <li><%= link_to t(:login), login_path %></li>
+            <li><%= link_to t(:contact_us), root_path %></li>
 
           <% else %>
-            <li><%= link_to "Log out <span class=\"small\">(#{current_user.username})</span>", logout_path %></li>
-            <li><%= link_to "My Page", current_user %></li>
+            <li><%= link_to t(:logout)+" <span class=\"small\">(#{current_user.username})</span>", logout_path %></li>
+            <li><%= link_to t(:mypage), current_user %></li>
           <% end %>
         </ul>
         <div class='clear'></div>
