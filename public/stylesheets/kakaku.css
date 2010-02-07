@@ -22,3 +22,27 @@ a:hover {
   color: #ffffff;
   padding: 0 1px 0 1px;
 }
+body { text-align: center; }
+div#root {
+  text-align: left;
+  width: 750px;
+  margin: 0 auto 25px auto;
+  padding: 0;
+}
+div#root div#header div#logo { line-height: 121px; }
+div#root ul#navigation li:hover ul { left: auto; }
+div#root ul#navigation li ul {
+  position: absolute;
+  left: -999em;
+  margin-left: 0;
+}
+div#root ul#navigation li ul li { background: #1f7fd0; }
+div#root ul#navigation li ul li a {
+  line-height: 20px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+div#root ul#navigation li.current a { color: #f6a2c6; }
+div#main { width: 31em; }
+div#top_links { margin-bottom: 1em; }
+div#bottom_links { margin-top: 1em; }

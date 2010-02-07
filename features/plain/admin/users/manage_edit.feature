@@ -32,7 +32,7 @@ When I go to the admin edit page of that user
 	And I follow "Info" at the bottom of the page
 Then I should be redirected to the show page of user with username: "ernie"
 When I go to the admin edit page of that user
-	And I follow "Listing Users" at the bottom of the page
+	And I follow "List Users" at the bottom of the page
 Then I should be redirected to the admin users page
 When I go to the admin edit page of that user
 	And I follow "Delete" at the bottom of the page

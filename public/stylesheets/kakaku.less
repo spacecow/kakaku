@@ -14,3 +14,54 @@
 	}
 }
 a { .global_a; }
+
+body{ text-align: center }
+
+div#root{
+	text-align:left;
+	width:750px;
+	margin:0 auto 25px auto;
+	padding:0;
+	div#header{
+		div#logo{
+			line-height:121px;
+		}
+	}
+	ul#navigation{
+		li{
+			:hover ul{
+				left: auto;
+			}
+			ul{
+				position: absolute;
+				left: -999em;
+				margin-left:0;
+				li{
+					background:#1F7FD0;
+					a{
+						line-height:20px;
+						padding-top:0;
+						padding-bottom:0;
+					}
+				}
+			}
+		}
+		li.current{
+			a{
+				color:#F6A2C6;
+			}
+		}
+	}
+}
+
+div#main{
+	width:31em;
+}
+
+div#top_links{
+	margin-bottom:1em;
+}
+div#bottom_links{
+	margin-top:1em;
+}
+

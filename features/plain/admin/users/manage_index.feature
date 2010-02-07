@@ -26,7 +26,7 @@ Then I should be redirected to the admin users page
 Scenario: Guest cannot list users
 When I go to the admin users page
 Then I should be redirected to the root page
-	And I should see "You are not authorized to access this page."
+	And I should see "You are not authorized to access this page." as error flash message
 	
 @allow-rescue
 Scenario: Regular users cannot list users
@@ -34,4 +34,4 @@ Given a user exists with username: "ernie"
 	And I am logged in as "ernie"
 When I go to the admin users page
 Then I should be redirected to the root page
-	And I should see "You are not authorized to access this page."
+	And I should see "You are not authorized to access this page." as error flash message

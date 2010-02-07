@@ -30,6 +30,12 @@ Then /^I should see "([^\"]*)" as subtitle$/ do |message|
   Then "I should see \"#{message}\" within \"h3\""
 end
 
+Then(/^I should see (.+) table$/) do |category, table|
+  html_table = table_at("##{category}").to_a
+  html_table.map! { |r| r.map! { |c| c.gsub(/<.+?>/, '') } }
+  table.diff!(html_table)
+end
+
 When /^I follow "([^\"]*)" within the users table$/ do |link|
 	When "I follow \"#{link}\" within \"table#users\""
 end
