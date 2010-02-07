@@ -12,7 +12,7 @@ Then I should be redirected to the root page
 Scenario: Admins can view everyone's mypage
 Given a user: "johan" exists with username: "johan"
 	And a user: "reiko" exists with username: "reiko"
-	And I am logged in as admin "johan"
+	And I am logged in as admin
 When I go to the show page of user "johan"
 Then I should be redirected to the show page of user "johan"
 When I go to the show page of user "reiko"

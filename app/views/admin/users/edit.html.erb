@@ -13,8 +13,8 @@
 	<% end %>	
 <% end %>
 
-<div id="links">
+<div id="bottom_links">
 	<%= link_to t(:show), @user %>
 	<%= link_to t(:delete), admin_user_path( @user ), :method=>:delete, :confirm=>t('message.sure?') %>
-	<%= link_to t(:listing, :object=>t('users.title')), admin_users_path %>
+	<%= link_to t(:list, :object=>t('users.title')), admin_users_path %>
 </div>
