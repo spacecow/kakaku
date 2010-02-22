@@ -22,7 +22,16 @@ config.action_view.cache_template_loading            = true
 # config.action_controller.asset_host = "http://assets.example.com"
 
 # Disable delivery errors, bad email addresses will be ignored
-# config.action_mailer.raise_delivery_errors = false
-
+ 	config.action_mailer.raise_delivery_errors = true
+ 	config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  
 # Enable threaded mode
 # config.threadsafe!
+
+config.action_mailer.smtp_settings = {
+  :address        => 'smtp.reserve-gakuwarinet.com',
+  :port           => 25,
+  :domain         => 'www.reserve-gakuwarinet.com',
+  :authentication => :login
+}
