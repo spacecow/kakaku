@@ -8,6 +8,7 @@ Then I should see "Users" as title
 	|	Username	|	Email						|	Actions 					|
 	|	ernie			|	ernie@gmail.com	|	Info Edit Delete	|
 
+@links
 Scenario: Links on users' index page
 Given a user exists with username: "ernie"
 	And I am logged in as admin
@@ -20,6 +21,7 @@ Then I should be redirected to the admin edit page of that user
 When I go to the admin users page
 	And I follow "Delete" within the users table
 Then I should be redirected to the admin users page
+	And I should see "Successfully deleted User" as notice flash message
 	And 0 users should exist
 
 @allow-rescue

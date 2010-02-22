@@ -11,3 +11,7 @@ Given /^I am logged in as admin$/ do
 	And "I fill in \"Password\" with \"secret\""
 	And "I press \"Log in\""
 end
+
+Then /^I should be logged in as "([^\"]*)"$/ do |arg1|
+  Then "I should see \"Log out (johan)\""
+end

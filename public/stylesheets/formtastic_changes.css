@@ -1,25 +1,38 @@
 form.formtastic fieldset.inputs ol { width: 60em; }
-form.formtastic fieldset.inputs ol li { width: 100%; }
+form.formtastic fieldset.inputs ol span.legend {
+  float: left;
+  font-weight: bold;
+  color: #0055b5;
+  font-size: 120%;
+  border-bottom: 1px dotted #0055b5;
+  margin-bottom: 1em;
+}
+form.formtastic fieldset.inputs ol li {
+  width: 100%;
+  margin-bottom: 0.3em;
+}
 form.formtastic fieldset.inputs ol li label {
   float: left;
   width: 12em;
   text-align: right;
   padding-right: 1em;
+  padding-top: 0;
 }
 form.formtastic fieldset.inputs ol li input {
-  margin-right: 26em;
+  margin-right: 27em;
   float: left;
+  width: 20em;
 }
 form.formtastic fieldset.inputs ol li textarea {
-  margin-right: 26em;
+  margin-right: 27em;
   float: left;
+  width: 20em;
 }
 form.formtastic fieldset.inputs ol li select {
-  margin-right: 26em;
+  margin-right: 27em;
   float: left;
+  width: 20em;
 }
-form.formtastic fieldset.inputs ol li input { width: 20em; }
-form.formtastic fieldset.inputs ol li textarea { width: 20em; }
 form.formtastic fieldset.inputs ol li textarea {
   height: 7em;
   resize: none;
@@ -43,7 +56,19 @@ form.formtastic fieldset.inputs ol li input#page_position {
   width: 2em;
   margin-right: 44em;
 }
+form.formtastic fieldset.inputs ol li.check_boxes label {
+  text-align: left;
+  position: absolute;
+  margin-left: 14.5em;
+  margin-right: 32em;
+}
+form.formtastic fieldset.inputs ol li.check_boxes input {
+  width: 1em;
+  margin-left: 13em;
+  margin-top: 0.2em;
+}
 form.formtastic fieldset.buttons {
   padding-left: 13em;
   margin-right: 20em;
+  margin-top: 1em;
 }

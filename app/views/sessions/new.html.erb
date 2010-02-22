@@ -3,14 +3,28 @@
 
 <p><%= t('message.no_account?') %> <%= link_to t(:signup), signup_path %></p>
 
-<% form_tag sessions_path do %>
-  <p>
-    <%= label_tag :login, t(:username_or_email) %><br />
-    <%= text_field_tag :login, params[:login] %>
-  </p>
-  <p>
-    <%= label_tag :password, t(:password) %><br />
-    <%= password_field_tag :password %>
-  </p>
-  <p><%= submit_tag t(:login) %></p>
+<% form_tag sessions_path, :class=>:formtastic do %>
+  <fieldset class="inputs">
+  	<ol>
+  		<li>
+		    <%= label_tag :login, t(:username_or_email) %>
+		    <%= text_field_tag :login, @login %>
+  		</li>
+		  <li>
+		    <%= label_tag :password, t(:password) %>
+		    <%= password_field_tag :password, @password %>
+		  </li>
+		  <li class="check_boxes">
+		    <%= label_tag :remember_me, t(:remember_me) %>
+		    <%= check_box_tag :remember_me, 'yes', @remember_me %>
+		  </li>
+		</ol>
+	</fieldset>
+  <fieldset class="buttons">
+		<ol>
+			<li class="commit"><%= submit_tag t(:login) %></li>
+  	</ol>
+  </fieldset>
 <% end %>
+<%= link_to t('message.forgot_password'), new_reset_path %>
+<%= javascript_tag "$('login').focus()" %>

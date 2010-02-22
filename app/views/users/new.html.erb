@@ -1,3 +1,4 @@
+<%= javascript_include_tag "toggle_alternative_question.js" %>
 <% title t(:signup) %>
 <% subtitle "" %>
 
@@ -5,13 +6,20 @@
 
 <% semantic_form_for @user do |f| %>
 	<% f.inputs do %>
-		<%= f.input :username, :label => t(:username) %>
 		<%= f.input :email, :label => t(:email_address) %>
+		<span class="legend"><%= t('message.select_id_and_password') %></span>
+		<%= f.input :username, :label => t(:username) %>
 		<%= f.input :password, :label => t(:password) %>
 		<%= f.input :password_confirmation, :label => t(:password_confirmation) %>
+		<span class="legend"><%= t('message.forgot_id_or_password') %></span>
+		<%= f.input :question, :label => t(:security_question), :collection => @questions %>
+		<%= f.input :alt_question, :label => t(:alt_security_question) %>
+		<%= f.input :answer, :label => t( 'answer' ), :hint=>t('message.answer_is_secret'), :as=>:password %>
+		<%= f.input :answer_confirmation, :label => t(:answer_confirmation), :as => :password %>
 	<% end %>
 	<% f.buttons do %>
 		<%= f.commit_button t(:signup) %>
 	<% end %>	
 <% end %>
 
+<%= javascript_tag "$('user_username').focus()" %>

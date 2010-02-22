@@ -9,7 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100131160719) do
+ActiveRecord::Schema.define(:version => 20100212141928) do
+
+  create_table "resets", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "token"
+    t.boolean  "used",       :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "username"
@@ -19,6 +27,9 @@ ActiveRecord::Schema.define(:version => 20100131160719) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "roles_mask"
+    t.string   "question"
+    t.string   "answer_hash"
+    t.string   "answer_salt"
   end
 
 end

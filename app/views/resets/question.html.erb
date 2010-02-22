@@ -1,0 +1,26 @@
+<% title t(:security_question) %>
+<% subtitle @question.nil? ? t('message.provide_username_or_email') : t('message.provide_answer') %>
+
+<% form_tag question_resets_path, :class=>:formtastic do %>
+  <fieldset class="inputs">
+  	<ol>
+  		<li>
+		    <%= label_tag :login, t(:username_or_email) %>
+		    <%= text_field_tag :login, @login %>
+	  	</li>
+		  <% unless @question.nil? %>
+		  <li>
+		    <%= label_tag :answer, @question[0]=='q'[0] ? t(@question) : @question %>
+		    <%= password_field_tag :answer %>
+		  </li>
+		  <% end %>
+		</ol>
+	</fieldset>
+  <fieldset class="buttons">
+  	<ol>
+  		<li class="commit">
+  			<%= submit_tag t(:send) %>
+  		</li>
+  	</ol>
+  </fieldset>
+<% end %>

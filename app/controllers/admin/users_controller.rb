@@ -22,7 +22,11 @@ class Admin::UsersController < ApplicationController
 	def destroy
 		@user = User.find( params[:id] )
 		@user.destroy
-		flash[:notice] = t('notice.updated', :object=>t(:user))
+		flash[:notice] = t('notice.deleted', :object=>t(:user))
 		redirect_to admin_users_path
+	end
+	
+	def confirm_delete
+		destroy if request.delete? 
 	end
 end

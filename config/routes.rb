@@ -3,15 +3,17 @@ ActionController::Routing::Routes.draw do |map|
   map.logout 'logout', :controller => 'sessions', :action => 'destroy'
   map.login 'login', :controller => 'sessions', :action => 'new'
   map.resources :sessions
+  map.resources :resets, :collection => { :question => :get }
   
   map.admin_login 'admin/login', :controller => 'admin', :action => 'login'
   map.admin_logout 'admin/logout', :controller => 'admin', :action => 'logout'
   
-  map.resources :users
+  map.resources :users, :member => { :update_password => :put }
   map.namespace :admin do |admin|
-		admin.resources :users
+		admin.resources :users, :member => { :confirm_delete => :any }
 	end
-	  
+	
+	map.reset_password '/change_password/:token', :controller => 'users', :action => 'change_password'
   map.root :controller=>'welcome', :action=>'index'
 
   # The priority is based upon order of creation: first created -> highest priority.

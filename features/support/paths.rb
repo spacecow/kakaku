@@ -26,6 +26,9 @@ module NavigationHelpers
 		when /^the (?:error )?(.+?) page$/
       send "#{$1.downcase.gsub(' ','_')}_path"
 
+		when /^the admin (comfirm delete) page (?:for|of) (.+)$/
+			"/admin"+polymorphic_path( model($2) )+"/confirm_delete"
+
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
         "Now, go and add a mapping in #{__FILE__}"

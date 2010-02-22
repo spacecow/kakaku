@@ -1,23 +1,33 @@
 @label_margin: 1em;
 @label_width: 12em;
 
+@dark_blue: #0055B5;
+
 form.formtastic{
 	fieldset.inputs{
 		ol{
 			width:60em;
+			span.legend{
+				float:left;
+				font-weight:bold;
+				color:@dark_blue;
+				font-size:120%;
+				border-bottom:1px dotted @dark_blue;
+				margin-bottom:1em;
+			}			
 			li{
 				width:100%;
+				margin-bottom:0.3em;
 				label{
 					float:left;
 					width:@label_width;
 					text-align:right;
 					padding-right:@label_margin;
+					padding-top:0;
 				}
 				input, textarea, select{
-					margin-right:26em;
+					margin-right:27em;
 					float:left;
-				}
-				input, textarea{
 					width:20em;
 				}
 				textarea{
@@ -44,10 +54,24 @@ form.formtastic{
 					margin-right:44em;
 				}
 			}
+			li.check_boxes{
+				label{
+					text-align:left;
+					position:absolute;
+					margin-left:@label_width+1em+1em+0.5em;
+					margin-right:@label_width+20em;
+				}
+				input{
+					width:1em;
+					margin-left:@label_width+1em;
+					margin-top:0.2em;
+				}
+			}
 		}
 	}
 	fieldset.buttons{
 		padding-left:@label_width+@label_margin;
 		margin-right:20em;
+		margin-top:1em;
 	}
 }

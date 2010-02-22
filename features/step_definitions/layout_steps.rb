@@ -1,13 +1,12 @@
 #-------------------- FLASH
 
-Then /^I should see "([^\"]*)" as notice flash message$/ do |message|
-  Then "I should see \"#{message}\" within \"div#flash_notice\""
+Then /^I should see "([^\"]*)" as (notice|error) flash message$/ do |message, type|
+  Then "I should see \"#{message}\" within \"div#flash_#{type}\""
 end
 
-Then /^I should see "([^\"]*)" as error flash message$/ do |message|
-  Then "I should see \"#{message}\" within \"div#flash_error\""
+Then /^I should see no error flash message$/ do
+  Then "the xpath \"//div[@id='flash_error']\" should not exist"
 end
-
 
 #-------------------- NAVIGATION BAR
 
@@ -62,12 +61,12 @@ Then /^I should see no links at the (bottom|top) of the page$/ do |position|
 	Then "I should see no options within \"div##{position}_links\""
 end
 
-
-#-------------------- ERROR
-
-Then /^I should see "([^\"]*)" as (?:error message|hint) for (\w+) (\w+)$/ do |message, model, field|
-  Then "I should see \"#{message}\" within \"li##{model}_#{field}_input\""
+Then /^the xpath "([^\"]*)" should not exist$/ do |xpath|
+  assert_have_no_xpath( xpath )
 end
+
+
+
 
 
 

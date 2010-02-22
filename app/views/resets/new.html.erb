@@ -1,0 +1,13 @@
+<% title t('resets.title') %>
+<% subtitle t('resets.subtitle') %>
+
+<% semantic_form_for @reset do |f| -%>
+  <% f.inputs do %>
+  	<%= f.input :login, :label => t( 'username_or_email' ) %>
+  <% end %>
+  <% f.buttons do %>
+  	<%= f.commit_button t(:reset) %>
+  <% end %>
+<% end -%>
+<%= link_to t('message.cannot_access_email'), question_resets_path %>
+<%= javascript_tag "$('reset_username').focus()" %>
