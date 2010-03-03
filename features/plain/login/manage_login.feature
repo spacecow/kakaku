@@ -66,7 +66,8 @@ Then I should be redirected to the root page
 Scenario: If a user inputs a wrong url, he should be taken to the root page (NOT IMPLEMENTED)
 Given not implemented
 
-
+Scenario: Cookie also for create (NOT IMPLEMENTED)
+Given not implemented
 
 
 

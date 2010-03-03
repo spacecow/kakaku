@@ -30,7 +30,7 @@ config.action_view.cache_template_loading            = true
 # config.threadsafe!
 
 config.action_mailer.smtp_settings = {
-  :address        => 'smtp.reserve-gakuwarinet.com',
+  :address        => "localhost",
   :port           => 25,
   :domain         => 'www.reserve-gakuwarinet.com',
   :authentication => :login
