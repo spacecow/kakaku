@@ -18,11 +18,16 @@ Examples:
 |																							|	What is my name?	|	What is my name?	|
 |	Type an alternative question.								|	What is my name?	|	What is my name?	|
 
+@view
 Scenario: View the sign up page
 When I go to the signup page
 Then I should see "Sign up" as title
   And I should see "Already have an account? Log in"
-  And the "Username" field should be empty
+  And the "First Name*" field should be empty
+  And the "Last Name*" field should be empty
+  And the "First Name (kana)*" field should be empty
+  And the "Last Name (kana)*" field should be empty
+  And the "Username*" field should be empty
   And the "Email Address" field should be empty
   And the "Password" field should be empty
   And the "Password Confirmation" field should be empty

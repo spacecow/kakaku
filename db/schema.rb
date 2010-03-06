@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100222205624) do
+ActiveRecord::Schema.define(:version => 20100303143804) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(:version => 20100222205624) do
 
   create_table "users", :force => true do |t|
     t.string   "username"
-    t.string   "email"
     t.string   "password_hash"
     t.string   "password_salt"
     t.datetime "created_at"
@@ -43,6 +42,15 @@ ActiveRecord::Schema.define(:version => 20100222205624) do
     t.string   "question"
     t.string   "answer_hash"
     t.string   "answer_salt"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "first_name_kana"
+    t.string   "last_name_kana"
+    t.boolean  "male"
+    t.string   "home_tel"
+    t.string   "mob_tel"
+    t.string   "mob_email"
+    t.string   "pc_email"
   end
 
 end

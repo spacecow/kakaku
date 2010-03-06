@@ -22,9 +22,13 @@ end
 
 #-------------------- ERROR
 
+Then /^I should see no error message for (\w+) (\w+)$/ do |model, field|
+  Then "the xpath \"//li[@id='#{model}_#{field}_input']/p[@class='inline-errors']\" should not exist"
+end
+
 Then /^I should see "([^\"]*)" as error message for (\w+) (\w+)$/ do |message, model, field|
   if message==""
-  	Then "the xpath \"//li[@id='#{model}_#{field}_input']/p[@class='inline-errors']\" should not exist"
+  	Then "I should see no error message for #{model} #{field}"
   else
   	Then "I should see /^#{message}$/ within \"li##{model}_#{field}_input p.inline-errors\""
   end

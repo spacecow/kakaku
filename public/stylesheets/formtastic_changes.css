@@ -67,6 +67,15 @@ form.formtastic fieldset.inputs ol li.check_boxes input {
   margin-left: 13em;
   margin-top: 0.2em;
 }
+form.formtastic fieldset.inputs ol span.horizontal li.radio fieldset legend { font-size: 100%; }
+form.formtastic fieldset.inputs ol span.horizontal li.radio fieldset legend label span { position: relative; }
+form.formtastic fieldset.inputs ol span.horizontal li.radio fieldset ol { padding-left: 13em; }
+form.formtastic fieldset.inputs ol span.horizontal li.radio fieldset ol li { width: 7em; }
+form.formtastic fieldset.inputs ol span.horizontal li.radio fieldset ol li label {
+  margin-top: 0.25em;
+  text-align: left;
+}
+form.formtastic fieldset.inputs ol span.horizontal li.radio fieldset ol li label input { width: 2em; }
 form.formtastic fieldset.buttons {
   padding-left: 13em;
   margin-right: 20em;
