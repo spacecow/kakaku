@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :resets
   
-  attr_accessible :username, :pc_email, :password, :password_confirmation, :question, :alt_question, :answer, :answer_confirmation, :first_name, :last_name, :first_name_kana, :last_name_kana, :male
+  attr_accessible :username, :pc_email, :mob_email, :password, :password_confirmation, :question, :alt_question, :answer, :answer_confirmation, :first_name, :last_name, :first_name_kana, :last_name_kana, :male, :home_tel, :mob_tel
   
   attr_accessor :password
   before_save :prepare_password
@@ -12,11 +12,13 @@ class User < ActiveRecord::Base
   validate :both_question_and_alternative_question_cannot_be_blank
   validate :both_question_and_alternative_question_cannot_be_filled_in
   validate :both_emails_cannot_be_blank
+  validate :both_tels_cannot_be_blank
 	validate :kana_format_of_first_name_kana
 	validate :kana_format_of_last_name_kana	
-  validates_uniqueness_of :username, :pc_email, :allow_blank => true
+  validates_uniqueness_of :username, :pc_email, :mob_email, :home_tel, :mob_tel, :allow_blank => true
   validates_format_of :username, :with => /^[-\w\._@]+$/i, :allow_blank => true, :message => "should only contain letters, numbers, or .-_@"
-  validate :mail_should_look_like_email_adresses
+  validate :mail_must_look_like_an_email_adresses
+  validate :tel_must_look_like_a_telephone_number
   validates_presence_of :password, :on => :create
   validates_confirmation_of :password
   validates_presence_of :answer, :on => :create
@@ -71,6 +73,11 @@ private
 		errors.add(:pc_email, I18n.t('error.message.both_blank')) if pc_email.blank? && mob_email.blank?
 		errors.add(:mob_email, I18n.t('error.message.both_blank')) if pc_email.blank? && mob_email.blank?
 	end
+	
+	def both_tels_cannot_be_blank
+		errors.add(:home_tel, I18n.t('error.message.both_blank')) if home_tel.blank? && mob_tel.blank?
+		errors.add(:mob_tel, I18n.t('error.message.both_blank')) if home_tel.blank? && mob_tel.blank?		
+	end
 
 	def both_question_and_alternative_question_cannot_be_blank
 		errors.add(:question, I18n.t('activerecord.errors.messages.blank')) if question.blank? && alt_question.blank?
@@ -78,16 +85,25 @@ private
 	end
 
 	def	kana_format_of_first_name_kana
-		errors.add(:first_name_kana, I18n.t('error.message.must_be_kana')) unless first_name_kana.match(/^[ァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワ]*$/) unless errors.on(:first_name_kana)
+		errors.add(:first_name_kana, I18n.t('error.message.must_be_kana')) unless first_name_kana.match(/^[ーァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワ]*$/) unless errors.on(:first_name_kana)
 	end
 
 	def	kana_format_of_last_name_kana
-		errors.add(:last_name_kana, I18n.t('error.message.must_be_kana')) unless last_name_kana.match(/^[ァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワ]*$/) unless errors.on(:last_name_kana)
+		errors.add(:last_name_kana, I18n.t('error.message.must_be_kana')) unless last_name_kana.match(/^[ーァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワ]*$/) unless errors.on(:last_name_kana)
 	end
   
-  def mail_should_look_like_email_adresses
-  	errors.add(:pc_email, I18n.t('activerecord.errors.messages.invalid')) unless pc_email.match(/^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i) unless errors.on(:pc_email)
-  	errors.add(:mob_email, I18n.t('activerecord.errors.messages.invalid')) unless mob_email.match(/^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i) unless errors.on(:mob_email)
+  def mail_must_look_like_an_email_adresses
+  	errors.add(:pc_email, I18n.t('activerecord.errors.messages.invalid')) unless pc_email.match(/^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i) unless errors.on(:pc_email) || (!mob_email.blank? && pc_email.blank?)
+  	errors.add(:mob_email, I18n.t('activerecord.errors.messages.invalid')) unless mob_email.match(/^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i) unless errors.on(:mob_email) || (!pc_email.blank? && mob_email.blank?)
+  end
+  
+  def tel_must_look_like_a_telephone_number
+  	numbers = {"０"=>"0", "１"=>"1", "２"=>"2", "３"=>"3", "４"=>"4", "５"=>"5", "６"=>"6", "７"=>"7", "８"=>"8", "９"=>"9", "ー"=>"", "-"=>""}
+  	numbers.each{|k,v| home_tel.gsub!(/#{k}/, "#{v}")} if home_tel.match(/[-ー０-９]/)
+  	numbers.each{|k,v| mob_tel.gsub!(/#{k}/, "#{v}")} if mob_tel.match(/[-ー０-９]/)
+
+  	errors.add(:home_tel, I18n.t('activerecord.errors.messages.invalid')) unless home_tel.match(/^[0-9]+$/) unless errors.on(:home_tel) || (!mob_tel.blank? && home_tel.blank?)
+  	errors.add(:mob_tel, I18n.t('activerecord.errors.messages.invalid')) unless mob_tel.match(/^[0-9]+$/) unless errors.on(:mob_tel) || (!home_tel.blank? && mob_tel.blank?)  	
   end
   
 	def set_question
