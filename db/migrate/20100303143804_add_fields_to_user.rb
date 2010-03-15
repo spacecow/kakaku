@@ -10,6 +10,11 @@ class AddFieldsToUser < ActiveRecord::Migration
 		add_column :users, :mob_email, :string
 		remove_column :users, :email
 		add_column :users, :pc_email, :string
+		add_column :users, :zip3, :string
+		add_column :users, :zip4, :string
+		add_column :users, :prefecture, :string
+		add_column :users, :ward, :string
+		add_column :users, :area, :string
   end
 
   def self.down
@@ -23,5 +28,10 @@ class AddFieldsToUser < ActiveRecord::Migration
     remove_column :users, :mob_email
     remove_column :users, :pc_email
     add_column :users, :email, :string
+    remove_column :users, :zip3
+    remove_column :users, :zip4
+    remove_column :users, :prefecture
+    remove_column :users, :ward
+    remove_column :users, :area
   end
 end

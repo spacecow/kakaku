@@ -42,6 +42,7 @@ en:
   password_confirmation: "Password Confirmation"
   pc_email: "Email Address (pc)"
   position: "Position"
+  prefecture: "Prefecture"
   q1: "Where did you spend your childhood summers?"
   q2: "What was the last name of your favorite teacher?"
   q3: "What was the last name of your best childhood friend?"
@@ -71,6 +72,7 @@ en:
   user: "User"
   username: "Username"
   username_or_email: "Username or Email Address"
+  zip: "Zip Code"
   
   error:
     access_denied: "You are not authorized to access this page."
@@ -89,6 +91,7 @@ en:
       both_blank: "can't both be blank"
       both_filled_in: "can't both be filled in"
       must_be_kana: "must be given in katakana"
+      must_be_digits: "must be {{no}} digits"
   message:
     already_account?: "Already have an account?"
     answer_is_secret: "Be aware of that this answer should be as secret as your password."

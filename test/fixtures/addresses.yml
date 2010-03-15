@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  zip: MyString
+  prefecture: MyString
+  ward: MyString
+  area: MyString
+
+two:
+  zip: MyString
+  prefecture: MyString
+  ward: MyString
+  area: MyString

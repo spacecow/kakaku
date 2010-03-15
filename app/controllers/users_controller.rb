@@ -11,7 +11,12 @@ class UsersController < ApplicationController
   
   def create
   	@questions = User::QUESTIONS.map{|e| t(e)}.zip( User::QUESTIONS )
-    if @user.save
+    if !params[:user][:generate_address].nil?
+    	#@user = User.new( :zip3 => params[:user][:zip3] )
+    	#@user.save!
+    	@user.must_be_a_zip_code
+    	render :action => 'new'
+    elsif @user.save
       session[:user_id] = @user.id
       flash[:notice] = t('message.signup_thanks')+" "+t('message.logged_in')
       redirect_to root_url

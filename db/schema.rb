@@ -9,7 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100303143804) do
+ActiveRecord::Schema.define(:version => 20100314031925) do
+
+  create_table "addresses", :force => true do |t|
+    t.string "zip"
+    t.string "prefecture"
+    t.string "ward"
+    t.string "area"
+  end
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -51,6 +58,11 @@ ActiveRecord::Schema.define(:version => 20100303143804) do
     t.string   "mob_tel"
     t.string   "mob_email"
     t.string   "pc_email"
+    t.string   "zip3"
+    t.string   "zip4"
+    t.string   "prefecture"
+    t.string   "ward"
+    t.string   "area"
   end
 
 end

@@ -69,6 +69,7 @@
   user: "Användare"
   username: "Användarnamn"
   username_or_email: "Användarnamn eller email adress"
+  zip: "Postnummer"
 
   error:
     access_denied: "Du saknar behörighet för den här sidan."

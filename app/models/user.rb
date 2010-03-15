@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :resets
   
-  attr_accessible :username, :pc_email, :mob_email, :password, :password_confirmation, :question, :alt_question, :answer, :answer_confirmation, :first_name, :last_name, :first_name_kana, :last_name_kana, :male, :home_tel, :mob_tel
+  attr_accessible :username, :pc_email, :mob_email, :password, :password_confirmation, :question, :alt_question, :answer, :answer_confirmation, :first_name, :last_name, :first_name_kana, :last_name_kana, :male, :home_tel, :mob_tel, :generate_address, :prefecture, :zip3, :zip4, :zip
   
   attr_accessor :password
   before_save :prepare_password
@@ -25,14 +25,19 @@ class User < ActiveRecord::Base
   validates_confirmation_of :answer  
   validates_length_of :password, :minimum => 4, :allow_blank => true
   validates_inclusion_of :male, :in => [false, true], :message => I18n.t('activerecord.errors.messages.blank')
+	validate :must_be_a_zip_code
 
 	ROLES = %w[registrant]
 	QUESTIONS = %w(q1 q2 q3 q4 q5 q6 q7 q8 q9 q10 q11 q12 q13 q14 q15 q16 qalt)
-  
+    
   # login can be either username or email address
   def self.authenticate(login, pass)
     user = find_by_username(login) || find_by_pc_email(login)
     return user if user && user.matching_password?(pass)
+  end
+  
+  def generate_address=( s )
+  	self.prefecture = Address.find_by_zip( zip ).prefecture unless Address.find_by_zip( zip ).nil?
   end
   
   def matching_password?(pass)
@@ -42,6 +47,23 @@ class User < ActiveRecord::Base
   def role?( role )
   	roles.include? role.to_s
   end
+  
+  def zip3
+  	#zip[0..2] unless zip.nil?
+  	@zip3
+  end
+  def zip3=(z)
+  	#self.zip = z
+  	@zip3 = z
+  end
+  
+  def zip4
+  	#zip[3..-1] unless zip.nil?
+  	@zip4
+  end
+  def zip4=(z)
+  	@zip4 = z
+  end  
   
   def alt_question
   	@alt_question
@@ -60,6 +82,16 @@ class User < ActiveRecord::Base
     return if awr.blank?
     create_new_salt
     self.answer_hash = User.encrypted_answer( self.answer, self.answer_salt )
+  end
+
+  def must_be_a_zip_code
+  	numbers = {"０"=>"0", "１"=>"1", "２"=>"2", "３"=>"3", "４"=>"4", "５"=>"5", "６"=>"6", "７"=>"7", "８"=>"8", "９"=>"9"}
+  	numbers.each{|k,v| zip3.gsub!(/#{k}/, "#{v}")} if !zip3.nil? && zip3.match(/[０-９]/)
+  	numbers.each{|k,v| zip4.gsub!(/#{k}/, "#{v}")} if !zip4.nil? && zip4.match(/[０-９]/)
+  	errors.add(:zip3, I18n.t('activerecord.errors.messages.blank')) if zip3.blank?
+  	errors.add(:zip4, I18n.t('activerecord.errors.messages.blank')) if zip4.blank?
+  	errors.add(:zip3, I18n.t('error.message.must_be_digits',:no=>3)) unless zip3.match(/^\d\d\d$/) unless errors.on(:zip3)
+  	errors.add(:zip4, I18n.t('error.message.must_be_digits',:no=>4)) unless zip4.match(/^\d\d\d\d$/) unless errors.on(:zip4)
   end
 
 private
@@ -99,8 +131,8 @@ private
   
   def tel_must_look_like_a_telephone_number
   	numbers = {"０"=>"0", "１"=>"1", "２"=>"2", "３"=>"3", "４"=>"4", "５"=>"5", "６"=>"6", "７"=>"7", "８"=>"8", "９"=>"9", "ー"=>"", "-"=>""}
-  	numbers.each{|k,v| home_tel.gsub!(/#{k}/, "#{v}")} if home_tel.match(/[-ー０-９]/)
-  	numbers.each{|k,v| mob_tel.gsub!(/#{k}/, "#{v}")} if mob_tel.match(/[-ー０-９]/)
+  	numbers.each{|k,v| home_tel.gsub!(/#{k}/, "#{v}")} if !home_tel.nil? && home_tel.match(/[-ー０-９]/)
+  	numbers.each{|k,v| mob_tel.gsub!(/#{k}/, "#{v}")} if !mob_tel.nil? && mob_tel.match(/[-ー０-９]/)
 
   	errors.add(:home_tel, I18n.t('activerecord.errors.messages.invalid')) unless home_tel.match(/^[0-9]+$/) unless errors.on(:home_tel) || (!mob_tel.blank? && home_tel.blank?)
   	errors.add(:mob_tel, I18n.t('activerecord.errors.messages.invalid')) unless mob_tel.match(/^[0-9]+$/) unless errors.on(:mob_tel) || (!home_tel.blank? && mob_tel.blank?)  	

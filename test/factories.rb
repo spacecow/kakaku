@@ -10,6 +10,8 @@ Factory.define :user do |f|
 	f.last_name_kana "ラスト"
 	f.first_name "First"
 	f.last_name "Last"
+	f.zip3 "123"
+	f.zip4 "4567"
 end
 
 Factory.define :reset do |f|

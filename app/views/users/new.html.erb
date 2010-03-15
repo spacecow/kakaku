@@ -16,6 +16,10 @@
 		<%= f.input :mob_email, :label => t(:mob_email) %>
 		<%= f.input :home_tel, :label => t(:home_tel) %>
 		<%= f.input :mob_tel, :label => t(:mob_tel) %>
+		<%= f.input :zip3, :label => t(:zip), :input_html => { :maxlength => 3 } %>
+		<%= f.input :zip4, :label=> '–', :input_html => { :maxlength => 4 }, :required => false %>
+		<%= f.input :prefecture, :label => t(:prefecture) %>
+		<%= submit_tag "Generate", :name => 'user[generate_address]' %>
 		<span class="legend"><%= t('message.select_id_and_password') %></span>
 		<%= f.input :username, :label => t(:username) %>
 		<%= f.input :password, :label => t(:password) %>

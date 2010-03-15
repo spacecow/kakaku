@@ -34,6 +34,22 @@ Examples:
 |	ふフ					|	ふフ					|	must be given in katakana	|	must be given in katakana	|
 |	フフ					|	フフ					|														|														|
 
+@zip
+Scenario Outline: Zip error
+When I go to the signup page
+	And I fill in "Zip Code" with "<input_zip3>"
+	And I fill in "–" with "<input_zip4>"
+	And I press "Generate"
+Then I should see "<error_zip3>" as error message for user zip3
+	And I should see "<error_zip4>" as error message for user zip4
+	And the "Zip Code" field should contain "<output_zip3>"
+	And the "–" field should contain "<output_zip4>"
+Examples:
+|	input_zip3	|	error_zip3				|	output_zip3	|	input_zip4	|	error_zip4				|	output_zip4	|
+|							|	can't be blank		|							|							|	can't be blank		|							|
+|	9８					|	must be 3 digits	|	98					|	d１２３				|	must be 4 digits	|	d123				|
+|	１２３					|										|	123					|	４５６７				|										|	4567				|
+
 @email
 Scenario Outline: Email error
 Given a user exists with pc_email: "pc@mail.se", mob_email: "mob@mail.se"
@@ -151,4 +167,7 @@ Scenario: Phone number can be written with japanese numbers (NOT IMPLEMENTED)
 Given not implemented
 
 Scenario: Phone numbers are saved without lines (NOT IMPLEMENTED)
+Given not implemented
+
+Scenario: Tel should erase everything except numbers (NOT IMPLEMENTED)
 Given not implemented
