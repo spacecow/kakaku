@@ -8,7 +8,8 @@ class ResetsController < ApplicationController
   	if @reset.save
   		user = User.find_by_username( @reset.login ) || User.find_by_email( @reset.login )
       @reset.update_attribute( :user_id, user.id )
-  		Mailer.send_later( :deliver_reset_password, @reset, reset_password_url( @reset.token ))
+  		#Mailer.send_later( :deliver_reset_password, @reset, reset_password_url( @reset.token ))
+  		Mailer.send( :deliver_reset_password, @reset, reset_password_url( @reset.token ))
   		flash[:notice] = t('notice.mail_sent')
   		redirect_to root_path
 		else

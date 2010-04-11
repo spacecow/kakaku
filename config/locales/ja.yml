@@ -1,10 +1,40 @@
 ja:
+  building_room: "建物名～号室"
+  female: "女"
+  first_name: "名"
+  first_name_kana: "メイ"
+  gender: "性別"
+  generate: "Generate"
+  home_tel: "電話番号"
+  last_name: "姓"
+  last_name_kana: "メイ"
+  login: "ログイン"
+  mail: "メール"
+  male: "男"
+  mob_email: "携帯メール"
+  mob_tel: "携帯番号"
+  password: "パスワード"
+  password_confirmation: "(再入力)パスワード"
+  pc_email: "PCメール"
+  phonenumber: "番号"
   prefecture: "都道府県"
+  security_answer: "秘密の答え"
+  security_answer_confirmation: "(再入力)秘密の答え"
+  security_question: "秘密の質問"
+  signup: "登録"
+  username: "ユーザー名"
+  ward_area: "市区町村～番地"
   zip: "郵便番号"
+  
+  message:
+    forgot_id_or_password: "秘密の質問と答え"
+    personal_info: "お客様情報の入力"
+    select_id_and_password: "ユーザー名とパスワードを入力"
   
   error:
     message:
       must_be_digits: "must be {{no}} digits"
+      both_blank: "{{object}}のテキスト領域は両方が空白のままにしておけません"
 
   date:
     formats:

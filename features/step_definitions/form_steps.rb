@@ -15,6 +15,19 @@ Then /^nothing should be selected in the "(.*)" (?:box|field)$/ do |select_id|
   state.should == :something_selected
 end
 
+Then /^"(.*)" should be selected in the "(.*)" (?:box|field|menu)$/ do |option_text,select_id| 
+  field = field_labeled(select_id) 
+  selected_value = field.value[0] 
+  state = :nothing_selected 
+  field.options.each do |option|
+    if option.element.to_html =~ /value="#{selected_value}"/ 
+      state = :something_selected 
+      option.element.inner_html.should == option_text 
+    end
+  end 
+  state.should == :something_selected 
+end
+
 Then /^the "(.*)" field should have options "(.*)"$/ do |select_id, options| 
   field = field_labeled(select_id) 
   field.options.map{|e| e.element.inner_html.blank? ? "BLANK" : e.element.inner_html }.join(", ").should == options

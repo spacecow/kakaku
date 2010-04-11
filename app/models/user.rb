@@ -1,14 +1,14 @@
 class User < ActiveRecord::Base
   has_many :resets
   
-  attr_accessible :username, :pc_email, :mob_email, :password, :password_confirmation, :question, :alt_question, :answer, :answer_confirmation, :first_name, :last_name, :first_name_kana, :last_name_kana, :male, :home_tel, :mob_tel, :generate_address, :prefecture, :zip3, :zip4, :zip
+  attr_accessible :username, :pc_email, :mob_email, :password, :password_confirmation, :question, :alt_question, :answer, :answer_confirmation, :first_name, :last_name, :first_name_kana, :last_name_kana, :male, :home_tel, :mob_tel, :generate_address, :prefecture, :zip3, :zip4, :ward_area
   
   attr_accessor :password
   before_save :prepare_password
   before_save :set_roles
   before_save :set_question
   
-  validates_presence_of :username, :first_name, :last_name, :first_name_kana, :last_name_kana
+  validates_presence_of :username, :first_name, :last_name, :first_name_kana, :last_name_kana, :prefecture, :ward_area
   validate :both_question_and_alternative_question_cannot_be_blank
   validate :both_question_and_alternative_question_cannot_be_filled_in
   validate :both_emails_cannot_be_blank
@@ -29,7 +29,8 @@ class User < ActiveRecord::Base
 
 	ROLES = %w[registrant]
 	QUESTIONS = %w(q1 q2 q3 q4 q5 q6 q7 q8 q9 q10 q11 q12 q13 q14 q15 q16 qalt)
-    
+	PREFECTURES = %w[北海道 青森県 秋田県 岩手県 新潟県 山形県 宮城県 石川県 富山県 栃木県 福島県 福井県 長野県 群馬県 埼玉県 茨城県 島根県 鳥取県 兵庫県 京都府 滋賀県 岐阜県 山梨県 東京都 千葉県 山口県 広島県 岡山県 大阪府 奈良県 愛知県 静岡県 神奈川県 佐賀県 福岡県 和歌山県 三重県 長崎県 熊本県 大分県 愛媛県 香川県 鹿児島県 宮崎県 高知県 徳島県 沖縄県]
+		
   # login can be either username or email address
   def self.authenticate(login, pass)
     user = find_by_username(login) || find_by_pc_email(login)
@@ -37,7 +38,9 @@ class User < ActiveRecord::Base
   end
   
   def generate_address=( s )
-  	self.prefecture = Address.find_by_zip( zip ).prefecture unless Address.find_by_zip( zip ).nil?
+  	#p "-------------------------------"
+  	#p s
+  	#self.prefecture = Address.find_by_zip( zip ).prefecture unless Address.find_by_zip( zip ).nil?
   end
   
   def matching_password?(pass)
@@ -48,23 +51,10 @@ class User < ActiveRecord::Base
   	roles.include? role.to_s
   end
   
-  def zip3
-  	#zip[0..2] unless zip.nil?
-  	@zip3
-  end
-  def zip3=(z)
-  	#self.zip = z
-  	@zip3 = z
-  end
-  
-  def zip4
-  	#zip[3..-1] unless zip.nil?
-  	@zip4
-  end
-  def zip4=(z)
-  	@zip4 = z
-  end  
-  
+	def zip
+		(zip3 || "") + (zip4 || "")
+	end
+
   def alt_question
   	@alt_question
   end
@@ -92,6 +82,12 @@ class User < ActiveRecord::Base
   	errors.add(:zip4, I18n.t('activerecord.errors.messages.blank')) if zip4.blank?
   	errors.add(:zip3, I18n.t('error.message.must_be_digits',:no=>3)) unless zip3.match(/^\d\d\d$/) unless errors.on(:zip3)
   	errors.add(:zip4, I18n.t('error.message.must_be_digits',:no=>4)) unless zip4.match(/^\d\d\d\d$/) unless errors.on(:zip4)
+  	
+  	address = Address.find_by_zip( zip )
+  	unless address.nil?
+  		self.prefecture = address.prefecture
+  		self.ward_area = address.ward + address.area
+		end
   end
 
 private
@@ -102,13 +98,13 @@ private
 	end
 	
 	def both_emails_cannot_be_blank
-		errors.add(:pc_email, I18n.t('error.message.both_blank')) if pc_email.blank? && mob_email.blank?
-		errors.add(:mob_email, I18n.t('error.message.both_blank')) if pc_email.blank? && mob_email.blank?
+		errors.add(:pc_email, I18n.t('error.message.both_blank'),:object=>I18n.t(:mail)) if pc_email.blank? && mob_email.blank?
+		errors.add(:mob_email, I18n.t('error.message.both_blank'),:object=>I18n.t(:mail)) if pc_email.blank? && mob_email.blank?
 	end
 	
 	def both_tels_cannot_be_blank
-		errors.add(:home_tel, I18n.t('error.message.both_blank')) if home_tel.blank? && mob_tel.blank?
-		errors.add(:mob_tel, I18n.t('error.message.both_blank')) if home_tel.blank? && mob_tel.blank?		
+		errors.add(:home_tel, I18n.t('error.message.both_blank'),:object=>I18n.t(:phonenumber)) if home_tel.blank? && mob_tel.blank?
+		errors.add(:mob_tel, I18n.t('error.message.both_blank'),:object=>I18n.t(:phonenumber)) if home_tel.blank? && mob_tel.blank?		
 	end
 
 	def both_question_and_alternative_question_cannot_be_blank

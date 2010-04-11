@@ -1,3 +1,11 @@
+Factory.define :address do |f|
+end
+
+Factory.define :reset do |f|
+	f.user {|u| u.association( :user, :username => "username1" ) }
+	f.username "username1"
+end
+
 Factory.define :user do |f|
 	f.sequence(:username){|n| "username#{n}" }
 	f.password "secret"
@@ -12,9 +20,6 @@ Factory.define :user do |f|
 	f.last_name "Last"
 	f.zip3 "123"
 	f.zip4 "4567"
-end
-
-Factory.define :reset do |f|
-	f.user {|u| u.association( :user, :username => "username1" ) }
-	f.username "username1"
+	f.prefecture "uppland"
+	f.ward_area "stockholm"
 end

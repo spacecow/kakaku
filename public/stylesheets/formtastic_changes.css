@@ -1,104 +1,85 @@
-form.user fieldset.inputs ol li#user_zip3_input { width: 25%; }
-form.user fieldset.inputs ol li#user_zip3_input input {
-  width: 2em;
-  margin-right: 0;
+.clear {
+  clear: both;
+  height: 0;
+  overflow: hidden;
 }
-form.user fieldset.inputs ol li#user_zip3_input p { margin-left: 6em; }
-form.user fieldset.inputs ol li#user_zip4_input { width: 30%; }
-form.user fieldset.inputs ol li#user_zip4_input label {
-  text-align: left;
-  width: 1em;
-  padding-right: 0;
-}
-form.user fieldset.inputs ol li#user_zip4_input input {
-  width: 2.6em;
-  margin-right: 0;
-}
-form.user fieldset.inputs ol li#user_zip4_input p {
-  float: left;
-  margin-left: 0;
-  width: 15em;
-}
-form.formtastic fieldset.inputs ol { width: 60em; }
-form.formtastic fieldset.inputs ol span.legend {
-  float: left;
+form.formtastic fieldset ol { width: 60em; }
+form.formtastic fieldset ol div.legend {
+  width: 27.8em;
+  margin: 1em 22.2em 0 0;
   font-weight: bold;
   color: #0055b5;
   font-size: 120%;
   border-bottom: 1px dotted #0055b5;
   margin-bottom: 1em;
 }
-form.formtastic fieldset.inputs ol li {
+form.formtastic fieldset ol li {
   width: 100%;
   margin-bottom: 0.3em;
 }
-form.formtastic fieldset.inputs ol li label {
-  float: left;
+form.formtastic fieldset ol li label {
   width: 12em;
   text-align: right;
-  padding-right: 1em;
-  padding-top: 0;
+  margin-right: 1em;
 }
-form.formtastic fieldset.inputs ol li input {
-  margin-right: 27em;
-  float: left;
-  width: 20em;
-}
-form.formtastic fieldset.inputs ol li textarea {
-  margin-right: 27em;
-  float: left;
-  width: 20em;
-}
-form.formtastic fieldset.inputs ol li select {
-  margin-right: 27em;
-  float: left;
-  width: 20em;
-}
-form.formtastic fieldset.inputs ol li textarea {
-  height: 7em;
-  resize: none;
-}
-form.formtastic fieldset.inputs ol li textarea#page_body {
-  margin-right: 0;
-  width: 31em;
-  height: 40em;
-}
-form.formtastic fieldset.inputs ol li p.inline-hints {
-  margin: 0 0 0 12em;
-  padding: 0;
-  font-style: italic;
-}
-form.formtastic fieldset.inputs ol li p.inline-errors {
+form.formtastic fieldset ol li p.inline-errors { margin: 0 0 0 13em; }
+form.formtastic fieldset ol li p.inline-hints {
   margin: 0 0 0 13em;
   padding: 0;
   font-style: italic;
 }
-form.formtastic fieldset.inputs ol li input#page_position {
-  width: 2em;
-  margin-right: 44em;
+form.formtastic fieldset ol li fieldset legend {
+  position: relative;
+  width: 12em;
+  font-size: 1em;
 }
-form.formtastic fieldset.inputs ol li.check_boxes label {
-  text-align: left;
-  position: absolute;
-  margin-left: 14.5em;
-  margin-right: 32em;
-}
-form.formtastic fieldset.inputs ol li.check_boxes input {
-  width: 1em;
-  margin-left: 13em;
-  margin-top: 0.2em;
-}
-form.formtastic fieldset.inputs ol span.horizontal li.radio fieldset legend { font-size: 100%; }
-form.formtastic fieldset.inputs ol span.horizontal li.radio fieldset legend label span { position: relative; }
-form.formtastic fieldset.inputs ol span.horizontal li.radio fieldset ol { padding-left: 13em; }
-form.formtastic fieldset.inputs ol span.horizontal li.radio fieldset ol li { width: 7em; }
-form.formtastic fieldset.inputs ol span.horizontal li.radio fieldset ol li label {
-  margin-top: 0.25em;
-  text-align: left;
-}
-form.formtastic fieldset.inputs ol span.horizontal li.radio fieldset ol li label input { width: 2em; }
-form.formtastic fieldset.buttons {
+form.formtastic fieldset ol li fieldset legend label { padding: 0; }
+form.formtastic fieldset ol li fieldset legend label span { position: relative; }
+form.formtastic fieldset ol li fieldset ol {
+  width: 100%;
+  margin: 0;
   padding-left: 13em;
-  margin-right: 20em;
-  margin-top: 1em;
 }
+form.formtastic fieldset ol li fieldset ol li {
+  width: 5em;
+  float: left;
+}
+form.formtastic fieldset ol li#user_zip3_input {
+  float: left;
+  width: 15.6em;
+}
+form.formtastic fieldset ol li#user_zip3_input p.inline-errors {
+  padding: 0;
+  margin: 0;
+  text-align: right;
+  width: auto;
+}
+form.formtastic fieldset ol li#user_zip3_input input { width: 2em; }
+form.formtastic fieldset ol li#user_zip4_input {
+  float: left;
+  width: 12em;
+}
+form.formtastic fieldset ol li#user_zip4_input label {
+  margin-right: 0.3em;
+  width: 1em;
+}
+form.formtastic fieldset ol li#user_zip4_input p.inline-errors {
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  width: auto;
+}
+form.formtastic fieldset ol li#user_zip4_input input { width: 3em; }
+form.formtastic fieldset ol li#submit {
+  float: left;
+  width: 10em;
+}
+form.formtastic fieldset ol li.clear {
+  clear: both;
+  height: 0;
+  overflow: hidden;
+}
+form.formtastic fieldset ol li.string input { width: 20em; }
+form.formtastic fieldset ol li.password input { width: 20em; }
+form.formtastic fieldset ol li.radio fieldset ol { margin-bottom: 0; }
+form.formtastic fieldset ol li.radio fieldset ol li { margin: 0; }

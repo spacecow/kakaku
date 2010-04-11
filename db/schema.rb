@@ -61,8 +61,10 @@ ActiveRecord::Schema.define(:version => 20100314031925) do
     t.string   "zip3"
     t.string   "zip4"
     t.string   "prefecture"
-    t.string   "ward"
-    t.string   "area"
+    t.string   "ward_area"
+    t.string   "building_room"
+    t.date     "birth"
+    t.string   "fax"
   end
 
 end

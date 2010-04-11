@@ -1,48 +1,21 @@
 @label_margin: 1em;
 @label_width: 12em;
-
+@field_width: 20em;
 @dark_blue: #0055B5;
 
-form.user{
-	fieldset.inputs{
-		ol{
-			li#user_zip3_input{
-				width:25%;
-				input{
-					width:2em;
-					margin-right:0;
-				}
-				p{
-					margin-left:6em;
-				}
-			}
-			li#user_zip4_input{
-				width:30%;
-				label{
-					text-align:left;
-					width:1em;
-					padding-right:0;
-				}
-				input{
-					width:2.6em;
-					margin-right:0;
-				}
-				p{
-					float:left;
-					margin-left:0;
-					width:15em;
-				}
-			}			
-		}
-	}
+.clear{
+	clear:both;
+	height:0;
+	overflow:hidden;
 }
 
 form.formtastic{
-	fieldset.inputs{
+	fieldset{
 		ol{
 			width:60em;
-			span.legend{
-				float:left;
+			div.legend{
+				width:27.8em;
+				margin:1em 22.2em 0 0;
 				font-weight:bold;
 				color:@dark_blue;
 				font-size:120%;
@@ -53,86 +26,97 @@ form.formtastic{
 				width:100%;
 				margin-bottom:0.3em;
 				label{
-					float:left;
 					width:@label_width;
 					text-align:right;
-					padding-right:@label_margin;
-					padding-top:0;
-				}
-				input, textarea, select{
-					margin-right:27em;
-					float:left;
-					width:20em;
-				}
-				textarea{
-					height:7em;
-					resize:none;
-				}
-				textarea#page_body{
-					margin-right:0;
-				  width:31em;
-				  height:40em;
-				}
-				p.inline-hints{
-					margin:0 0 0 12em;
-					padding:0;
-				  font-style:italic;
+					margin-right:@label_margin;
 				}
 				p.inline-errors{
 					margin:0 0 0 13em;
+				}
+				p.inline-hints{
+					margin:0 0 0 13em;
 					padding:0;
 				  font-style:italic;
-				}				
-				input#page_position{
-					width:2em;
-					margin-right:44em;
 				}
-			}
-			li.check_boxes{
-				label{
-					text-align:left;
-					position:absolute;
-					margin-left:@label_width+1em+1em+0.5em;
-					margin-right:@label_width+20em;
-				}
-				input{
-					width:1em;
-					margin-left:@label_width+1em;
-					margin-top:0.2em;
-				}
-			}
-			span.horizontal{
-				li.radio{
-					fieldset{
-						legend{
-							font-size:100%;
-							label{
-								span{
-									position:relative;
-								}
+				fieldset{
+					legend{
+						position:relative;
+						width:@label_width;
+						font-size:1em;
+						label{
+							padding:0;
+							span{
+								position:relative;
 							}
 						}
-						ol{
-							padding-left:13em;
-							li{
-								width:7em;
-								label{
-									margin-top:0.25em;
-									text-align:left;
-									input{
-										width:2em;
-									}
-								}
-							}
+					}
+					ol{
+						width:100%;
+						margin:0;
+						padding-left:@label_width+@label_margin;
+						li{
+							width:5em;
+							float:left;
 						}
 					}
 				}
 			}
-		}
-	}
-	fieldset.buttons{
-		padding-left:@label_width+@label_margin;
-		margin-right:20em;
-		margin-top:1em;
-	}
+			li#user_zip3_input{
+				float:left;
+				width:15.6em;
+				p.inline-errors{
+					padding:0;
+					margin:0;
+					text-align:right;
+					width:auto;
+				}
+				input{
+					width:2em;
+				}
+			}
+			li#user_zip4_input{
+				float:left;
+				width:12em;
+				label{
+					margin-right:0.3em;
+					width:1em;
+				}
+				p.inline-errors{
+					padding:0;
+					margin:0;
+					text-align:left;
+					width:auto;
+				}					
+				input{
+					width:3em;
+				}
+			}
+			li#submit{
+				float:left;
+				width:10em;
+				input{		
+				}
+			}
+			li.clear{
+				clear:both;
+				height:0;
+				overflow:hidden;
+			}			
+			li.string, li.password{
+				input{
+					width:@field_width;
+				}
+			}
+			li.radio{
+				fieldset{
+					ol{
+						margin-bottom:0;
+						li{
+							margin:0;
+						}
+					}
+				}
+			}
+		} //ol
+	} //fieldset
 }

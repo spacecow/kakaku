@@ -50,6 +50,24 @@ Examples:
 |	9８					|	must be 3 digits	|	98					|	d１２３				|	must be 4 digits	|	d123				|
 |	１２３					|										|	123					|	４５６７				|										|	4567				|
 
+@ok-zip
+Scenario: If a correct zip is filled in, so will the corresponding address
+Given an address exists with zip: "9800815", prefecture: "宮城県", ward: "Aoba-ku", area: "Kadan"
+When I go to the signup page
+	And I fill in "Zip Code" with "980"
+	And I fill in "–" with "0815"
+	And I press "Generate"
+Then the "Ward/Area" field should contain "Aoba-kuKadan"
+
+@address
+Scenario: Address error
+When I go to the signup page
+	And I select "" from "Prefecture"
+	And I fill in "Ward/Area" with ""
+	And I press "Sign up"
+Then I should see "can't be blank" as error message for user prefecture
+	And I should see "can't be blank" as error message for user ward_area
+
 @email
 Scenario Outline: Email error
 Given a user exists with pc_email: "pc@mail.se", mob_email: "mob@mail.se"
@@ -153,9 +171,10 @@ Examples:
 |																|	What is my name?	|
 |	Type an alternative question.	|	What is my name?	|
 
+@answer_error
 Scenario Outline: Answer error
 When I go to the signup page
-	And I fill in "Answer" with "<input>" 
+	And I fill in "Security Answer" with "<input>" 
 	And I press "Sign up"
 Then I should see "<output>" as error message for user answer
 Examples:
