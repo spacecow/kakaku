@@ -1,3 +1,8 @@
+When /^I fill in field "([^\"]*)" with "([^\"]*)"$/ do |field,text|
+	f = field_with_id( "#{field}" )
+	fill_in(field, :with => text)
+end
+
 Then /^the "([^\"]*)" field should be empty$/ do |field|
   field_labeled(field).value.should be_blank
 end

@@ -25,6 +25,20 @@ class UsersController < ApplicationController
     end
   end
 
+	def edit
+		@questions = User::QUESTIONS.map{|e| t(e)}.zip( User::QUESTIONS )
+	end
+
+	def update
+		if @user.update_attributes( params[:user] )
+			flash[:notice] = t('notice.updated', :object=>t(:user))
+			redirect_to @user
+		else
+			@questions = User::QUESTIONS.map{|e| t(e)}.zip( User::QUESTIONS )
+			render :action => :edit
+		end		
+	end
+
 	def change_password
 		@token = params[:token]
 		reset = Reset.find_by_token( @token )

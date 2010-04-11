@@ -30,6 +30,16 @@ div#root {
   padding: 0;
 }
 div#root div#header div#logo { line-height: 121px; }
+div#root div#show p {
+  margin: 0;
+  padding: 0;
+}
+div#root div#show p span#category {
+  float: left;
+  width: 10em;
+  color: #0055b5;
+  text-align: right;
+}
 div#root ul#navigation li:hover ul { left: auto; }
 div#root ul#navigation li ul {
   position: absolute;

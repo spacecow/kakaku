@@ -21,7 +21,7 @@ form.formtastic{
 				font-size:120%;
 				border-bottom:1px dotted @dark_blue;
 				margin-bottom:1em;
-			}			
+			}
 			li{
 				width:100%;
 				margin-bottom:0.3em;
@@ -105,6 +105,9 @@ form.formtastic{
 			li.string, li.password{
 				input{
 					width:@field_width;
+				}
+				input.non_japanese{
+					ime-mode: disabled;
 				}
 			}
 			li.radio{

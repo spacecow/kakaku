@@ -80,6 +80,8 @@ form.formtastic fieldset ol li.clear {
   overflow: hidden;
 }
 form.formtastic fieldset ol li.string input { width: 20em; }
+form.formtastic fieldset ol li.string input.non_japanese { ime-mode: disabled; }
 form.formtastic fieldset ol li.password input { width: 20em; }
+form.formtastic fieldset ol li.password input.non_japanese { ime-mode: disabled; }
 form.formtastic fieldset ol li.radio fieldset ol { margin-bottom: 0; }
 form.formtastic fieldset ol li.radio fieldset ol li { margin: 0; }

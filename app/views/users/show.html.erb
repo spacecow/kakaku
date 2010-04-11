@@ -1,8 +1,25 @@
-<% title @user.username %>
-<% subtitle t('users.message.show') %>
+<% title "#{@user.last_name} #{@user.first_name} (#{@user.username})" %>
+<% subtitle t('message.personal_info') %>
+
+<div id="show">
+	<p><%= @user.display( 'last_name' ) %></p>
+	<p><%= @user.display( 'first_name' ) %></p>
+	<p><%= @user.display( 'last_name_kana' ) %></p>
+	<p><%= @user.display( 'first_name_kana' ) %></p>
+	<p><span id="category"><%= t(:gender) %></span>: <%= @user.male ? t(:male) : t(:female) %></p>
+	<p><%= @user.display( 'birth' ) %></p>
+	<p><%= @user.display( 'pc_email' ) %></p>
+	<p><%= @user.display( 'mob_email' ) %></p>
+	<p><%= @user.display( 'home_tel' ) %></p>
+	<p><%= @user.display( 'mob_tel' ) %></p>
+	<p><%= @user.display( 'zip') %></p>
+	<p><%= @user.display( 'prefecture' ) %></p>
+	<p><%= @user.display( 'ward_area' ) %></p>
+	<p><%= @user.display( 'building_room' ) %></p>
+</div>
 
 <div id="bottom_links">
-	<%= link_to t(:edit), edit_admin_user_path( @user ) if can? :edit, @user %>
+	<%= link_to t(:edit), edit_user_path( @user ) if can? :edit, @user %>
 	<%= link_to t(:delete), admin_user_path( @user ), :method=>:delete, :confirm=>t('message.sure?') if can? :destroy, @user %>
 	<%= link_to t(:list, :object=>t('users.title')), admin_users_path if can? :index, User %>
 </div>

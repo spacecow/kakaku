@@ -1,17 +1,28 @@
+@signup
 Scenario Outline: Sign up
+Given an address exists with zip: "4910002", prefecture: "愛知県", ward: "Some City", area: "Some Island"
 When I go to the signup page
-	And I fill in "Email Address" with "jsveholm@gmail.com"	
+	And I fill in "Last Name" with "Space"
+	And I fill in "First Name" with "Cow"
+	And I fill in "Last Name (kana)*" with "スペース"
+	And I fill in "First Name (kana)*" with "カオ"
+	And I choose "Male"
+	And I fill in "Email Address" with "spacecow@space.com"	
+	And I fill in "Telephone (home)*" with "123456"
+	And I fill in field "user_zip3" with "491"
+	And I fill in field "user_zip4" with "0002"
 	And I fill in "Username" with "johan"
 	And I fill in "Password" with "secret"
 	And I fill in "Password Confirmation" with "secret"
 	And I select "<question>" from "Security Question"
 	And I fill in "Alternative Security Question" with "<alt_question>"
-	And I fill in "Answer" with "I am not going to tell you that!"
+	And I fill in "Security Answer" with "I am not going to tell you that!"
 	And I fill in "Answer Confirmation" with "I am not going to tell you that!"
+	And I press "Sign up"
 	And I press "Sign up"
 Then I should be redirected to the root page
 	And I should see "Thank you for signing up! You are now logged in." as notice flash message
-	And 1 users should exist with username: "johan", email: "jsveholm@gmail.com", question: "<saved_question>"
+	And a user should exist with username: "johan", pc_email: "spacecow@space.com", question: "<saved_question>"
 Examples:
 |	question 																		|	alt_question			| saved_question		|
 |	Where did you spend your childhood summers?	|										|	q1								|
@@ -54,3 +65,6 @@ Scenario: Links on the Sign up page
 When I go to the signup page
 	And I follow "Log in" within "div#contents"
 Then I should be redirected to the login page
+
+Scenario: If zip code is filled in there should not be any error message for prefecture/area <NOT IMPLEMENTED>
+Given not implemented

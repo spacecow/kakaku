@@ -1,19 +1,18 @@
 class Address < ActiveRecord::Base
-	def self.generate_database
-		filename = 'ken_all.csv'
-		
+	def self.generate_default_csv
+		generate_csv( 'data/ken.utf' )
+	end
+	
+	def self.generate_csv( file )
 		Address.delete_all
-		
-		File.open filename, 'r' do |f|
-			f.readlines.each_with_index do |line,i|
-				p i if i%1000==0
-				array = line.split(',')
-				Address.create(
-					:zip => array[2].gsub(/"/, ''),
-					:prefecture => array[6].gsub(/"/, ''),
-					:ward => array[7].gsub(/"/, ''),
-					:area => array[8].gsub(/"/, '')
-				)
+		File.open file.gsub(/\.utf/,'.csv'), 'w' do |outfile|
+			File.open file, 'r' do |infile|
+				infile.readlines.each_with_index do |line,i|
+					p i if i%1000==0
+					array = line.split(',')
+					outfile.write [(i+1).to_s, array[2], array[6], array[7], array[8]].
+						map{|e| e.gsub(/"/,'')}.join(',')+"\n"
+				end
 			end
 		end
 	end

@@ -90,6 +90,10 @@ class User < ActiveRecord::Base
 		end
   end
 
+	def display( text )
+		"<span id='category'>"+I18n.t( text )+"</span>: "+send( text ).to_s
+	end
+
 private
 	
 	def both_question_and_alternative_question_cannot_be_filled_in
@@ -113,11 +117,11 @@ private
 	end
 
 	def	kana_format_of_first_name_kana
-		errors.add(:first_name_kana, I18n.t('error.message.must_be_kana')) unless first_name_kana.match(/^[ーァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワ]*$/) unless errors.on(:first_name_kana)
+		errors.add(:first_name_kana, I18n.t('error.message.must_be_kana')) unless first_name_kana.match(/^[ーァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワン]*$/) unless errors.on(:first_name_kana)
 	end
 
 	def	kana_format_of_last_name_kana
-		errors.add(:last_name_kana, I18n.t('error.message.must_be_kana')) unless last_name_kana.match(/^[ーァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワ]*$/) unless errors.on(:last_name_kana)
+		errors.add(:last_name_kana, I18n.t('error.message.must_be_kana')) unless last_name_kana.match(/^[ーァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワン]*$/) unless errors.on(:last_name_kana)
 	end
   
   def mail_must_look_like_an_email_adresses

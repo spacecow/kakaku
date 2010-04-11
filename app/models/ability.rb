@@ -7,7 +7,7 @@ class Ability
 		elsif
 			user ||= User.new
 			if user.role? :registrant
-				can :show, User do |u|
+				can [:show,:edit,:update], User do |u|
 					u == user
 				end
 			else

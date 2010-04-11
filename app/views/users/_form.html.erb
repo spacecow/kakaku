@@ -1,0 +1,32 @@
+<% f.inputs do %>
+	<div class="legend"><%= t('message.personal_info') %></div>
+	<%= f.input :last_name, :label => t( 'last_name' ) %>
+	<%= f.input :first_name, :label => t( 'first_name' ) %>
+	<%= f.input :last_name_kana, :label => t( 'last_name_kana' ) %>
+	<%= f.input :first_name_kana, :label => t( 'first_name_kana' ) %>
+	<%= f.input :male, :label => t(:gender), :as=>:radio, :collection=>[[t(:male),true],[t(:female),false]] %>
+	<%= f.input :birth, :label => t(:birth), :required=>false %>
+	<%= f.input :pc_email, :label => t(:pc_email) %>
+	<%= f.input :mob_email, :label => t(:mob_email) %>
+	<%= f.input :home_tel, :label => t(:home_tel) %>
+	<%= f.input :mob_tel, :label => t(:mob_tel) %>
+	<%= f.input :zip3, :label => t(:zip), :input_html => { :maxlength => 3, :class => :non_japanese } %>
+	<%= f.input :zip4, :label=> '–', :input_html => { :maxlength => 4, :class => :non_japanese }, :required => false %>
+	<li id="submit"><%= submit_tag t(:generate), :name => 'user[generate_address]' %></li>
+	<li class="clear"></li>
+	<%= f.input :prefecture, :label => t(:prefecture), :collection => User::PREFECTURES %>
+	<%= f.input :ward_area, :label => t(:ward_area) %>
+	<%= f.input :building_room, :label => t(:building_room), :required => false %>
+	<div class="legend"><%= t('message.select_id_and_password') %></div>
+	<%= f.input :username, :label => t(:username), :input_html => { :class => :non_japanese } %>
+	<%= f.input :password, :label => t(:password) %>
+	<%= f.input :password_confirmation, :label => t(:password_confirmation) %>
+	<div class="legend"><%= t('message.forgot_id_or_password') %></div>
+	<%= f.input :question, :label => t(:security_question), :collection => @questions %>
+	<%= f.input :alt_question, :label => t(:alt_security_question) %>
+	<%= f.input :answer, :label => t(:security_answer), :hint=>t('message.answer_is_secret'), :as=>:password %>
+	<%= f.input :answer_confirmation, :label => t(:security_answer_confirmation), :as => :password %>
+<% end %>
+<% f.buttons do %>
+	<%= f.commit_button t(button_label) %>
+<% end %>	
