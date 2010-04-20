@@ -66,5 +66,5 @@ When I go to the signup page
 	And I follow "Log in" within "div#contents"
 Then I should be redirected to the login page
 
+@pending
 Scenario: If zip code is filled in there should not be any error message for prefecture/area <NOT IMPLEMENTED>
-Given not implemented

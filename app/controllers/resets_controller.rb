@@ -6,7 +6,7 @@ class ResetsController < ApplicationController
   
   def create
   	if @reset.save
-  		user = User.find_by_username( @reset.login ) || User.find_by_email( @reset.login )
+  		user = User.find_by_username( @reset.login ) || User.find_by_pc_email( @reset.login ) || User.find_by_mob_email( @reset.login )
       @reset.update_attribute( :user_id, user.id )
   		#Mailer.send_later( :deliver_reset_password, @reset, reset_password_url( @reset.token ))
   		Mailer.send( :deliver_reset_password, @reset, reset_password_url( @reset.token ))
@@ -19,7 +19,7 @@ class ResetsController < ApplicationController
   
   def question
   	@login = params[:login]
-  	user = User.find_by_username( @login ) || User.find_by_email( @login )
+  	user = User.find_by_username( @login ) || User.find_by_pc_email( @login )
   	if user.nil?
 			flash.now[:error] = t('error.login_does_not_exist') unless params[:login].nil?
 		else

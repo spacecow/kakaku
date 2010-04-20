@@ -1,5 +1,5 @@
 Scenario Outline: User confirmation for password reset
-Given a user exists with username: "spacecow", email: "jsveholm@gmail.com"
+Given a user exists with username: "spacecow", pc_email: "jsveholm@gmail.com", mob_email: "johan@space.com"
 When I go to the new reset page
 	And I fill in "Username or Email Address" with "<input>"
 	And I press "Reset"
@@ -10,7 +10,8 @@ Examples:
 |	input								|
 |	spacecow						|
 |	jsveholm@gmail.com	|
-
+|	johan@space.com			|
+	
 Scenario: View of "I have forgot my password!" page
 When I go to the new reset page
 Then I should see "Reset User Password" as title
@@ -23,5 +24,5 @@ When I go to the new reset page
 	And I follow "I cannot access my mail!"
 Then I should be redirected to the question resets page
 
+@pending
 Scenario: Email confirmation (NOT IMPLEMENTED)
-Given not implemented

@@ -1,4 +1,5 @@
 class Admin::UsersController < ApplicationController
+	before_filter :verify_admin
   load_and_authorize_resource
   
   def index
@@ -6,21 +7,20 @@ class Admin::UsersController < ApplicationController
   end
 
   def edit
-  	@user = User.find( params[:id] )
+  	@questions = User::QUESTIONS.map{|e| t(e)}.zip( User::QUESTIONS )
   end
 
 	def update
-		@user = User.find( params[:id] )
 		if @user.update_attributes( params[:user] )
 			flash[:notice] = t('notice.updated', :object=>t(:user))
 			redirect_to admin_users_path
 		else
+			@questions = User::QUESTIONS.map{|e| t(e)}.zip( User::QUESTIONS )
 			render :action => :edit
 		end
 	end
 	
 	def destroy
-		@user = User.find( params[:id] )
 		@user.destroy
 		flash[:notice] = t('notice.deleted', :object=>t(:user))
 		redirect_to admin_users_path
@@ -28,5 +28,14 @@ class Admin::UsersController < ApplicationController
 	
 	def confirm_delete
 		destroy if request.delete? 
+	end
+
+private
+
+	def verify_admin
+		unless admin?
+			flash[:error] = t('error.access_denied')
+	  	redirect_to root_url 
+	  end
 	end
 end

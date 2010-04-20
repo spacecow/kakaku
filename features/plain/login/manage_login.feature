@@ -9,7 +9,7 @@ Then I should see "Log in" as title
 
 @cookie
 Scenario: Login with cookie
-Given a user exists with username: "johan", email: "jsveholm@gmail.com", password: "secret"
+Given a user exists with username: "johan", pc_email: "jsveholm@gmail.com", password: "secret"
 When I go to the login page
 	And I fill in "Username or Email Address" with "johan"
 	And I fill in "Password" with "secret"
@@ -37,7 +37,7 @@ When I go to the login page
 Then I should be redirected to the new reset page
 
 Scenario Outline: Log in
-Given a user exists with username: "johan", email: "jsveholm@gmail.com", password: "secret"
+Given a user exists with username: "johan", pc_email: "jsveholm@gmail.com", password: "secret"
 When I go to the login page
 	And I fill in "Username or Email Address" with "<login>"
 	And I fill in "Password" with "secret"
@@ -50,44 +50,24 @@ Examples:
 |	jsveholm@gmail.com	|
 
 Scenario: Log out
-Given a user exists with username: "johan", email: "jsveholm@gmail.com"
+Given a user exists with username: "johan", pc_email: "jsveholm@gmail.com"
 	And I am logged in as "johan"
 When I follow "Log out"
 Then I should be redirected to the root page
 And I should see "Successfully logged out." as notice flash message
 
 Scenario: If you are already logged in you should not be able to go to the login page
-Given a user exists with username: "johan", email: "jsveholm@gmail.com"
+Given a user exists with username: "johan", pc_email: "jsveholm@gmail.com"
 	And I am logged in as "johan"
 When I go to the login page
 Then I should be redirected to the root page
 	And I should see "You are already logged in." as error flash message
 
+@pending
 Scenario: If a user inputs a wrong url, he should be taken to the root page (NOT IMPLEMENTED)
-Given not implemented
 
+@pending
 Scenario: Cookie also for create (NOT IMPLEMENTED)
-Given not implemented
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@pending
+Scenario: Log in with either one of the two emails (NOT IMPLEMENTED)

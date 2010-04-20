@@ -31,8 +31,9 @@ Given a user exists
 When I go to the show page of that user
 Then I should see links "Edit, Delete, List Users" at the bottom of the page
 
-Scenario: A regular user should see no Links from his own show page
+@links
+Scenario: A regular user links from his own show page
 Given a user exists with username: "ernie"
 	And I am logged in as "ernie"
 When I go to the show page of that user
-Then I should see no links at the bottom of the page
+Then I should see links "Edit, Security Settings" at the bottom of the page

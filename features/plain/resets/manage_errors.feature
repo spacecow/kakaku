@@ -10,7 +10,7 @@ Examples:
 |	rymdkossan@space.com	|	does not exist	|
 
 Scenario Outline: Show error messages for wrong password
-Given a user: "jsveholm" exists with username: "jsveholm", question: "q1", answer: "in the back of a car", email: "jsveholm@space.com"
+Given a user: "jsveholm" exists with username: "jsveholm", question: "q1", answer: "in the back of a car", pc_email: "jsveholm@space.com"
 When I go to the question resets page
 	Then I should see no error flash message
 When I fill in "Username or Email Address" with "something else"

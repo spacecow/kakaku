@@ -1,11 +1,18 @@
 <%= javascript_include_tag "toggle_alternative_question.js" %>
+<%# javascript_include_tag "hide_generate_button.js" %>
 <% title t(:signup) %>
 <% subtitle "" %>
 
 <%= t('message.already_account?') %> <%= link_to t(:login), login_path %>
 
 <%- semantic_form_for @user do |f| -%>
-	<%= render "form", :f=>f, :button_label=>'signup' %>
+	<% f.inputs do %>
+		<%= render "form", :f=>f %>
+		<%= render "security", :f=>f %>
+	<% end %>
+	<% f.buttons do %>
+		<%= f.commit_button t('signup') %>
+	<% end %>
 <%- end -%>
 
 <%= javascript_tag "$('user_username').focus()" %>

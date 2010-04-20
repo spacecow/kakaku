@@ -11,7 +11,7 @@ class Reset < ActiveRecord::Base
 private
 	
 	def login_must_exist
-		errors.add :login, I18n.t('error.message.does_not_exist') if User.find_by_username( login ).nil? && User.find_by_email( login ).nil?
+		errors.add :login, I18n.t('error.message.does_not_exist') if User.find_by_username( login ).nil? && User.find_by_pc_email( login ).nil? && User.find_by_mob_email( login ).nil?
 	end		
 	
 	def generate_token

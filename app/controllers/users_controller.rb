@@ -73,6 +73,20 @@ class UsersController < ApplicationController
     end
 	end
 
+	def security
+		@questions = User::QUESTIONS.map{|e| t(e)}.zip( User::QUESTIONS )
+	end
+
+	def security_update
+		if @user.update_attributes( params[:user] )
+			flash[:notice] = t('notice.updated', :object=>t(:user))
+			redirect_to @user
+		else
+			@questions = User::QUESTIONS.map{|e| t(e)}.zip( User::QUESTIONS )
+			render :action => :security
+		end		
+	end
+
 private
 
   def find_page_by_id_or_username

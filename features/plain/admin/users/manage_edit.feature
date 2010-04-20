@@ -1,5 +1,5 @@
 Background:
-Given a user exists with username: "ernie", email: "ernie@gmail.com"
+Given a user exists with username: "ernie", pc_email: "ernie@gmail.com"
 
 Scenario: View user's edit form
 Given I am logged in as admin
@@ -11,10 +11,11 @@ Then I should see "Editing User" as title
 	And the "Password Confirmation" field should be empty
 	And I should see links "Info, Delete, List Users" at the bottom of the page
 	
+@pending
 Scenario: Edit a user
 Given I am logged in as admin
 When I go to the admin edit page of that user
-Then 1 users should exist with username: "ernie", email: "ernie@gmail.com"
+Then 1 users should exist with username: "ernie", pc_email: "ernie@gmail.com"
 	And 1 users should exist
 When I fill in "Username" with "jsveholm"
 	And I fill in "Email Address" with "jsveholm@gmail.com"
@@ -52,5 +53,5 @@ When I go to the admin edit page of that user
 Then I should be redirected to the root page
 	And I should see "You are not authorized to access this page."
 
+@pending
 Scenario: Invalid email address (NOT IMPLEMENTED)
-Given not implemented

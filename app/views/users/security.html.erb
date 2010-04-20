@@ -1,0 +1,14 @@
+<%= javascript_include_tag "toggle_alternative_question.js" %>
+<% title t(:security_settings) %>
+<% subtitle "" %>
+
+<%- semantic_form_for @user, :url => { :action => :security_update }, :html => { :method => :put } do |f| -%>
+	<% f.inputs do %>
+		<%= render "security", :f=>f %>
+	<% end %>
+	<% f.buttons do %>
+		<%= f.commit_button t('update') %>
+	<% end %>	
+<%- end -%>
+
+<%= javascript_tag "$('user_username').focus()" %>

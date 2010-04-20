@@ -10,8 +10,8 @@
 <%= f.input :home_tel, :label => t(:home_tel) %>
 <%= f.input :mob_tel, :label => t(:mob_tel) %>
 <%= f.input :zip3, :label => t(:zip), :input_html => { :maxlength => 3, :class => :non_japanese } %>
-<%= f.input :zip4, :label=> '–', :input_html => { :maxlength => 4, :class => :non_japanese }, :required => false %>
-<li id="submit"><%= submit_tag t(:generate), :name => 'user[generate_address]', :id=>'generate' %></li>
+<%= f.input :zip4, :label=> '?', :input_html => { :maxlength => 4, :class => :non_japanese }, :required => false %>
+<li id="submit"><%= submit_tag t(:generate), :name => 'user[generate_address]' %></li>
 <li class="clear"></li>
 <%= f.input :prefecture, :label => t(:prefecture), :as=>:select, :collection => User::PREFECTURES %>
 <%= f.input :ward_area, :label => t(:ward_area) %>

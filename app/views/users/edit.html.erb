@@ -1,9 +1,13 @@
-<%= javascript_include_tag "toggle_alternative_question.js" %>
 <% title t(:edit_user) %>
 <% subtitle "" %>
 
 <%- semantic_form_for @user do |f| -%>
-	<%= render "form", :f=>f, :button_label=>'update' %>
+	<% f.inputs do %>
+		<%= render "form", :f=>f %>
+	<% end %>
+	<% f.buttons do %>
+		<%= f.commit_button t('update') %>
+	<% end %>	
 <%- end -%>
 
 <%= javascript_tag "$('user_username').focus()" %>

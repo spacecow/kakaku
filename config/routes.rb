@@ -8,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
   map.admin_login 'admin/login', :controller => 'admin', :action => 'login'
   map.admin_logout 'admin/logout', :controller => 'admin', :action => 'logout'
   
-  map.resources :users, :member => { :update_password => :put }
+  map.resources :users, :member => { :update_password => :put, :security => :get, :security_update => :put }
   map.namespace :admin do |admin|
 		admin.resources :users, :member => { :confirm_delete => :any }
 	end

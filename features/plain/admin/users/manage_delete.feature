@@ -1,5 +1,5 @@
 Background:
-	Given a user: "ernie" exists with username: "ernie", email: "ernie@gmail.com"
+	Given a user: "ernie" exists with username: "ernie", pc_email: "ernie@gmail.com"
 
 Scenario: View of Confirm Delete page
 Given I am logged in as admin

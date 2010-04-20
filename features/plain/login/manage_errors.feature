@@ -1,5 +1,5 @@
 Scenario Outline: Display error login messages
-Given a user exists with username: "johan", email: "jsveholm@gmail.com"
+Given a user exists with username: "johan", pc_email: "jsveholm@gmail.com"
 When I go to the login page
 	And I fill in "Username or Email Address" with "<login>"
 	And I fill in "Password" with "<password>"

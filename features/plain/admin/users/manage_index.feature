@@ -1,5 +1,5 @@
 Scenario: View users' index
-Given a user exists with username: "ernie", email: "ernie@gmail.com"
+Given a user exists with username: "ernie", pc_email: "ernie@gmail.com"
 	And I am logged in as admin
 When I go to the admin users page
 Then I should see "Users" as title
