@@ -1,17 +1,19 @@
 Scenario Outline: Show questions
-Given a user exists with username: "jsveholm", question: "<abr_question>"
+Given a user exists with username: "jsveholm", question: "<abr_question>", pc_email: "johan@space.com", mob_email: "johan@mobile.com"
 When I go to the question resets page
 Then the "Username" field should be empty
 	And the xpath "//input[@id='answer']" should not exist
-When I fill in "Username" with "jsveholm"
+When I fill in "Username" with "<user>"
 	And I press "Send"
 Then I should be redirected to the question resets page
-	And the "Username" field should contain "jsveholm"	
+	And the "Username" field should contain "<user>"	
 	And the "<question>" field should be empty
 Examples:
-|	abr_question			|	question																		|
-|	q1								|	Where did you spend your childhood summers?	|
-|	What is my name?	|	What is my name?														|
+|	user							|	abr_question			|	question																		|
+|	jsveholm					|	q1								|	Where did you spend your childhood summers?	|
+|	jsveholm					|	What is my name?	|	What is my name?														|
+|	johan@space.com		|	q1								|	Where did you spend your childhood summers?	|
+|	johan@mobile.com	|	q1								|	Where did you spend your childhood summers?	|
 
 @view
 Scenario: View of "I cannot reach my mail!" page

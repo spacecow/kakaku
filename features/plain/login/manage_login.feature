@@ -36,8 +36,9 @@ When I go to the login page
 	And I follow "I have forgotten my password!"
 Then I should be redirected to the new reset page
 
+@login
 Scenario Outline: Log in
-Given a user exists with username: "johan", pc_email: "jsveholm@gmail.com", password: "secret"
+Given a user exists with username: "johan", pc_email: "jsveholm@gmail.com", password: "secret", mob_email: "johan@mobile.com"
 When I go to the login page
 	And I fill in "Username or Email Address" with "<login>"
 	And I fill in "Password" with "secret"
@@ -48,6 +49,7 @@ Examples:
 |	login								|
 |	johan								|
 |	jsveholm@gmail.com	|
+| johan@mobile.com		|
 
 Scenario: Log out
 Given a user exists with username: "johan", pc_email: "jsveholm@gmail.com"
@@ -68,6 +70,3 @@ Scenario: If a user inputs a wrong url, he should be taken to the root page (NOT
 
 @pending
 Scenario: Cookie also for create (NOT IMPLEMENTED)
-
-@pending
-Scenario: Log in with either one of the two emails (NOT IMPLEMENTED)

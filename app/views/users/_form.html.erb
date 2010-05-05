@@ -7,8 +7,8 @@
 <%= f.input :birth, :label => t(:birth), :required=>false %>
 <%= f.input :pc_email, :label => t(:pc_email) %>
 <%= f.input :mob_email, :label => t(:mob_email) %>
-<%= f.input :home_tel, :label => t(:home_tel) %>
-<%= f.input :mob_tel, :label => t(:mob_tel) %>
+<%= f.input :home_tel, :label => t(:home_tel), :input_html => { :class => :non_japanese } %>
+<%= f.input :mob_tel, :label => t(:mob_tel), :input_html => { :class => :non_japanese } %>
 <%= f.input :zip3, :label => t(:zip), :input_html => { :maxlength => 3, :class => :non_japanese } %>
 <%= f.input :zip4, :label=> '–', :input_html => { :maxlength => 4, :class => :non_japanese }, :required => false %>
 <li id="submit"><%= submit_tag t(:generate), :name => 'user[generate_address]', :id=>'generate' %></li>

@@ -19,7 +19,7 @@ class ResetsController < ApplicationController
   
   def question
   	@login = params[:login]
-  	user = User.find_by_username( @login ) || User.find_by_pc_email( @login )
+  	user = User.find_by_username( @login ) || User.find_by_pc_email( @login ) || User.find_by_mob_email( @login )
   	if user.nil?
 			flash.now[:error] = t('error.login_does_not_exist') unless params[:login].nil?
 		else

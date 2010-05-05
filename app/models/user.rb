@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
 		
   # login can be either username or email address
   def self.authenticate(login, pass)
-    user = find_by_username(login) || find_by_pc_email(login)
+    user = find_by_username(login) || find_by_pc_email(login) || find_by_mob_email(login)
     return user if user && user.matching_password?(pass)
   end
   
@@ -130,10 +130,12 @@ private
   end
   
   def tel_must_look_like_a_telephone_number
-  	numbers = {"０"=>"0", "１"=>"1", "２"=>"2", "３"=>"3", "４"=>"4", "５"=>"5", "６"=>"6", "７"=>"7", "８"=>"8", "９"=>"9", "ー"=>"", "-"=>""}
-  	numbers.each{|k,v| home_tel.gsub!(/#{k}/, "#{v}")} if !home_tel.nil? && home_tel.match(/[-ー０-９]/)
-  	numbers.each{|k,v| mob_tel.gsub!(/#{k}/, "#{v}")} if !mob_tel.nil? && mob_tel.match(/[-ー０-９]/)
+  	#numbers = {"０"=>"0", "１"=>"1", "２"=>"2", "３"=>"3", "４"=>"4", "５"=>"5", "６"=>"6", "７"=>"7", "８"=>"8", "９"=>"9", "ー"=>"", "-"=>""}
+  	#numbers.each{|k,v| home_tel.gsub!(/#{k}/, "#{v}")} if !home_tel.nil? && home_tel.match(/[-ー０-９]/)
+  	#numbers.each{|k,v| mob_tel.gsub!(/#{k}/, "#{v}")} if !mob_tel.nil? && mob_tel.match(/[-ー０-９]/)
 
+		home_tel.gsub!(/\D/,'') unless home_tel.nil?
+		mob_tel.gsub!(/\D/,'') unless home_tel.nil?
   	errors.add(:home_tel, I18n.t('activerecord.errors.messages.invalid')) unless home_tel.match(/^[0-9]+$/) unless errors.on(:home_tel) || (!mob_tel.blank? && home_tel.blank?)
   	errors.add(:mob_tel, I18n.t('activerecord.errors.messages.invalid')) unless mob_tel.match(/^[0-9]+$/) unless errors.on(:mob_tel) || (!home_tel.blank? && mob_tel.blank?)  	
   end

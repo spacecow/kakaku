@@ -106,8 +106,6 @@ Then I should see "<error_home>" as error message for user home_tel
 Examples:
 |	input_home		|	input_mob				|	error_home							|	error_mob								|
 |								|									|	can't both be blank			|	can't both be blank			|
-|	\*47382				|									|	is invalid							|													|
-|								|	0573e						|													|	is invalid							|
 |	12345					|									|	has already been taken	|													|
 |								|	67890						|													|	has already been taken	|
 |	12345					|	67890						|	has already been taken	|	has already been taken	|
@@ -126,10 +124,10 @@ Examples:
 |									|	01234567890			|							|	01234567890	|
 |	0123-456-7890		|									|	01234567890	|							|
 |									|	012-3456-7-890	|							|	01234567890	|
-|	０１２３-４５６７８９ー０		|									|	01234567890	|							|
-|									|	012-3456-7-890	|							|	01234567890	|
-|	１								|									|	1						|							|
-|									|	１								|							|	1						|
+|	１2							|									|	2						|							|
+|									|	１3							|							|	3						|
+|	0123d456s7890		|									|	01234567890	|							|
+|									|	012g3456z7l890	|							|	01234567890	|
 
 @gender
 Scenario: Gender error
@@ -181,12 +179,3 @@ Examples:
 |	input		|	output											|
 |					|	can't be blank							|
 |	secret	|	doesn't match confirmation	|
-
-Scenario: Phone number can be written with japanese numbers (NOT IMPLEMENTED)
-Given not implemented
-
-Scenario: Phone numbers are saved without lines (NOT IMPLEMENTED)
-Given not implemented
-
-Scenario: Tel should erase everything except numbers (NOT IMPLEMENTED)
-Given not implemented
