@@ -4,7 +4,7 @@
 <%= f.input :last_name_kana, :label => t( 'last_name_kana' ) %>
 <%= f.input :first_name_kana, :label => t( 'first_name_kana' ) %>
 <%= f.input :male, :label => t(:gender), :as=>:radio, :collection=>[[t(:male),true],[t(:female),false]] %>
-<%= f.input :birth, :label => t(:birth), :required=>false %>
+<%= f.input :birth, :label => t(:birth), :required=>false, :start_year=>1930 %>
 <%= f.input :pc_email, :label => t(:pc_email) %>
 <%= f.input :mob_email, :label => t(:mob_email) %>
 <%= f.input :home_tel, :label => t(:home_tel), :input_html => { :class => :non_japanese } %>

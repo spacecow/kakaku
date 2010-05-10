@@ -36,6 +36,7 @@
   new: "Ny {{object}}"
   new_password: "Nytt lösenord"
   new_password_confirmation: "Bekräftelse av nytt lösenord"
+  old_password: "Gammalt lösenord"
   password: "Lösenord"
   password_confirmation: "Bekräftelse av lösenord"
   pc_email: "Emailadress (pc)"

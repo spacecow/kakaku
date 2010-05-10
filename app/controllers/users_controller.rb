@@ -78,13 +78,19 @@ class UsersController < ApplicationController
 	end
 
 	def security_update
-		if @user.update_attributes( params[:user] )
-			flash[:notice] = t('notice.updated', :object=>t(:user))
-			redirect_to @user
-		else
-			@questions = User::QUESTIONS.map{|e| t(e)}.zip( User::QUESTIONS )
-			render :action => :security
-		end		
+		user = User.authenticate(@user.username, params[:old_password])
+		if user
+			if @user.update_attributes( params[:user] )
+				flash[:notice] = t('notice.updated', :object=>t(:user))
+				redirect_to @user
+			else
+				@questions = User::QUESTIONS.map{|e| t(e)}.zip( User::QUESTIONS )
+				render :action => :security
+			end
+    else
+      flash.now[:error] = t('error.provide_password')
+      render :action => 'security'
+    end			
 	end
 
 private

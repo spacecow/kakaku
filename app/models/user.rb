@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :resets
   
-  attr_accessible :username, :pc_email, :mob_email, :password, :password_confirmation, :question, :alt_question, :answer, :answer_confirmation, :first_name, :last_name, :first_name_kana, :last_name_kana, :male, :home_tel, :mob_tel, :generate_address, :prefecture, :zip3, :zip4, :ward_area
+  attr_accessible :username, :pc_email, :mob_email, :password, :password_confirmation, :question, :alt_question, :answer, :answer_confirmation, :first_name, :last_name, :first_name_kana, :last_name_kana, :male, :home_tel, :mob_tel, :generate_address, :prefecture, :zip3, :zip4, :ward_area, :birth, :building_room
   
   attr_accessor :password
   before_save :prepare_password

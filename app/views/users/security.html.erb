@@ -4,7 +4,7 @@
 
 <%- semantic_form_for @user, :url => { :action => :security_update }, :html => { :method => :put } do |f| -%>
 	<% f.inputs do %>
-		<%= render "security", :f=>f %>
+		<%= render "security", :f=>f, :user=>@user %>
 	<% end %>
 	<% f.buttons do %>
 		<%= f.commit_button t('update') %>

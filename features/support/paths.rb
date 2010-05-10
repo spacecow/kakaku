@@ -19,6 +19,9 @@ module NavigationHelpers
 
 		when /^the (?:error )?(?:(admin) )?show page (?:for|of) (.+)$/
 			( $1 ? "/#{$1}" : "" ) + polymorphic_path( model($2) )
+		
+		when /^the (security) page (?:for|of) (.+)$/
+			polymorphic_path( model($2) ) + "/#{$1}"
 			      
 		when /^the (?:(admin) )?edit page (?:for|of) (.+)$/
 			( $1 ? "/#{$1}" : "" ) + edit_polymorphic_path( model($2) )

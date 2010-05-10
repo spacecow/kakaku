@@ -15,6 +15,7 @@ ja:
   male: "男"
   mob_email: "携帯メール"
   mob_tel: "携帯番号"
+  old_password: "古いパスワード"
   password: "パスワード"
   password_confirmation: "(再入力)パスワード"
   pc_email: "PCメール"

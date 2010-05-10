@@ -8,7 +8,7 @@
 <%- semantic_form_for @user do |f| -%>
 	<% f.inputs do %>
 		<%= render "form", :f=>f %>
-		<%= render "security", :f=>f %>
+		<%= render "security", :f=>f, :user=>@user %>
 	<% end %>
 	<% f.buttons do %>
 		<%= f.commit_button t('signup') %>

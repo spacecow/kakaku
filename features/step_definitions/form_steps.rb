@@ -1,3 +1,15 @@
+Then /^the "([^\"]*)" field should be disabled$/ do |field_label|
+  field_labeled( field_label ).disabled?.should be_true
+end
+
+Then /^the "([^\"]*)" field should be enabled$/ do |field_label|
+  field_labeled( field_label ).disabled?.should_not be_true
+end
+
+Then /^"([^\"]*)" should not be visible$/ do |field_id|
+  assert_have_no_xpath("//input[@id='#{field_id}']")
+end
+
 When /^I fill in field "([^\"]*)" with "([^\"]*)"$/ do |field,text|
 	f = field_with_id( "#{field}" )
 	fill_in(field, :with => text)
