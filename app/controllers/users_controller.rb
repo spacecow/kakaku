@@ -14,7 +14,14 @@ class UsersController < ApplicationController
     if !params[:user][:generate_address].nil?
     	#@user = User.new( :zip3 => params[:user][:zip3] )
     	#@user.save!
-    	@user.must_be_a_zip_code
+    	unless @user.must_be_a_zip_code(params[:user][:zip3],params[:user][:zip4])
+    		flash[:error] = "That zip code does not exist."
+    		@user.zip3 = ""
+    		@user.zip4 = ""
+    		@user.prefecture = ""
+    		@user.ward_area = ""
+    		@user.building_room = ""
+  		end
     	render :action => 'new'
     elsif @user.save
       session[:user_id] = @user.id
@@ -30,7 +37,21 @@ class UsersController < ApplicationController
 	end
 
 	def update
-		if @user.update_attributes( params[:user] )
+		if !params[:user][:generate_address].nil?
+    	#@user = User.new( :zip3 => params[:user][:zip3] )
+    	#@user.save!
+    	unless @user.must_be_a_zip_code(params[:user][:zip3],params[:user][:zip4])
+    		flash[:error] = "That zip code does not exist."
+    		@user.zip3 = ""
+    		@user.zip4 = ""
+    		@user.prefecture = ""
+    		@user.ward_area = ""
+    		@user.building_room = ""    		
+  		end
+    	@user.zip3 = params[:user][:zip3]
+    	@user.zip4 = params[:user][:zip4]
+    	render :action => 'edit'
+    elsif @user.update_attributes( params[:user] )
 			flash[:notice] = t('notice.updated', :object=>t(:user))
 			redirect_to @user
 		else
@@ -79,15 +100,20 @@ class UsersController < ApplicationController
 
 	def security_update
 		user = User.authenticate(@user.username, params[:old_password])
-		if user
+		if user || admin?
 			if @user.update_attributes( params[:user] )
-				flash[:notice] = t('notice.updated', :object=>t(:user))
+				if admin?
+					flash[:notice] = t('notice.updated_what_for', :object=>t(:security_settings), :person=>@user.username)
+				else
+					flash[:notice] = t('notice.updated', :object=>t(:security_settings))
+				end
 				redirect_to @user
 			else
 				@questions = User::QUESTIONS.map{|e| t(e)}.zip( User::QUESTIONS )
 				render :action => :security
 			end
     else
+    	@questions = User::QUESTIONS.map{|e| t(e)}.zip( User::QUESTIONS )
       flash.now[:error] = t('error.provide_password')
       render :action => 'security'
     end			

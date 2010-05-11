@@ -12,7 +12,7 @@ Factory.define :user do |f|
 	f.sequence(:mob_tel){|n| "#{n}" }
 	f.sequence(:mob_email){|n| "mob_mail#{n}@another.fake.domain.com" }
 	f.sequence(:pc_email){|n| "pc_mail#{n}@another.fake.domain.com" }
-	f.question "Where did you spend your childhood summers?"
+	f.question "q1"
 	f.answer "I am not going to tell you that!"
 	f.male true
 	f.first_name_kana "ファースト"

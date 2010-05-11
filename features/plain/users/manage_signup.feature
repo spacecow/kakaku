@@ -74,3 +74,12 @@ Then I should be redirected to the login page
 
 @pending
 Scenario: If zip code is filled in there should not be any error message for prefecture/area <NOT IMPLEMENTED>
+
+@pending
+Scenario: Enter is connected to the Generate button, it should be connected to the Update button.
+
+@pending
+Scenario: The gender field could look a bit prettier.
+
+@pending
+Scenario: The signup/update button should be adjusted horizontally.

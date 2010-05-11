@@ -90,6 +90,7 @@ en:
     logged_in: "You are already logged in."
     login_does_not_exist: "Login does not exist."
     no_token: "Obtain a correct pass key in order to reset password."
+    provide_password: "Please provide your old password."
     used_token: "This pass key has already been used."
     username_does_not_exist: "The username does not exist."
     message:
@@ -115,14 +116,15 @@ en:
   notice:
     change_success: "Successfully changed password."
     correct_answer: "Correct answer."
-    created: "Successfully created {{object}}"
-    deleted: "Successfully deleted {{object}}"
+    created: "Successfully created {{object}}."
+    deleted: "Successfully deleted {{object}}."
     logged_in: "Successfully logged in."
     logged_out: "Successfully logged out."
     logged_in_as: "Successfully logged in as {{object}}."
     logged_out_as: "Successfully logged out {{object}}."
     mail_sent: "A mail has been sent to you."
-    updated: "Successfully updated {{object}}"
+    updated: "Successfully updated {{object}}."
+    updated_what_for: "Successfully updated {{object}} for {{person}}."
   resets:
     title: "Reset User Password"
     subtitle: "Please provide your username or email and an email will be sent to you with instructions of how to reset your password"

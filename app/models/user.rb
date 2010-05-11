@@ -74,20 +74,21 @@ class User < ActiveRecord::Base
     self.answer_hash = User.encrypted_answer( self.answer, self.answer_salt )
   end
 
-  def must_be_a_zip_code
+  def must_be_a_zip_code( z3=zip3, z4=zip4 )
   	numbers = {"０"=>"0", "１"=>"1", "２"=>"2", "３"=>"3", "４"=>"4", "５"=>"5", "６"=>"6", "７"=>"7", "８"=>"8", "９"=>"9"}
-  	numbers.each{|k,v| zip3.gsub!(/#{k}/, "#{v}")} if !zip3.nil? && zip3.match(/[０-９]/)
-  	numbers.each{|k,v| zip4.gsub!(/#{k}/, "#{v}")} if !zip4.nil? && zip4.match(/[０-９]/)
-  	errors.add(:zip3, I18n.t('activerecord.errors.messages.blank')) if zip3.blank?
-  	errors.add(:zip4, I18n.t('activerecord.errors.messages.blank')) if zip4.blank?
-  	errors.add(:zip3, I18n.t('error.message.must_be_digits',:no=>3)) unless zip3.match(/^\d\d\d$/) unless errors.on(:zip3)
-  	errors.add(:zip4, I18n.t('error.message.must_be_digits',:no=>4)) unless zip4.match(/^\d\d\d\d$/) unless errors.on(:zip4)
+  	numbers.each{|k,v| z3.gsub!(/#{k}/, "#{v}")} if !z3.nil? && z3.match(/[０-９]/)
+  	numbers.each{|k,v| z4.gsub!(/#{k}/, "#{v}")} if !z4.nil? && z4.match(/[０-９]/)
+  	errors.add(:zip3, I18n.t('activerecord.errors.messages.blank')) if z3.blank?
+  	errors.add(:zip4, I18n.t('activerecord.errors.messages.blank')) if z4.blank?
+  	errors.add(:zip3, I18n.t('error.message.must_be_digits',:no=>3)) unless z3.match(/^\d\d\d$/) unless errors.on(:z3)
+  	errors.add(:zip4, I18n.t('error.message.must_be_digits',:no=>4)) unless z4.match(/^\d\d\d\d$/) unless errors.on(:z4)
   	
-  	address = Address.find_by_zip( zip )
+  	address = Address.find_by_zip( z3+z4 )
   	unless address.nil?
   		self.prefecture = address.prefecture
   		self.ward_area = address.ward + address.area
 		end
+		!address.nil?
   end
 
 	def display( text )
