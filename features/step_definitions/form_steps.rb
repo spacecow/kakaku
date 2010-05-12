@@ -19,6 +19,20 @@ Then /^the "([^\"]*)" field should be empty$/ do |field|
   field_labeled(field).value.should be_blank
 end
 
+Then /^the "([^\"]*)" field should contain "([^\"]*)"$/ do |field, value|
+  begin
+  	field_labeled(field).value.should =~ /#{value}/
+  rescue Webrat::NotFoundError
+  	field_with_id(field).value.should =~ /#{value}/
+	end
+end
+
+Then /^(?:|I )should see exactly "([^\"]*)" within "([^\"]*)"$/ do |text, selector|
+  within(selector) do |content|
+    content.should contain(/^#{text}$/)
+  end
+end
+
 Then /^nothing should be selected in the "(.*)" (?:box|field)$/ do |select_id| 
   field = field_labeled(select_id) 
   selected_value = field.value[0] 
@@ -37,8 +51,10 @@ Then /^"(.*)" should be selected in the "(.*)" (?:box|field|menu)$/ do |option_t
   selected_value = field.value[0] 
   state = :nothing_selected 
   field.options.each do |option|
-    if option.element.to_html =~ /value="#{selected_value}"/ 
-      state = :something_selected 
+    if option.element.to_html =~ /selected/ 
+      p option
+      p "yey!"
+      state = :something_selected
       option.element.inner_html.should == option_text 
     end
   end 

@@ -78,13 +78,13 @@ class User < ActiveRecord::Base
   	numbers = {"０"=>"0", "１"=>"1", "２"=>"2", "３"=>"3", "４"=>"4", "５"=>"5", "６"=>"6", "７"=>"7", "８"=>"8", "９"=>"9"}
   	numbers.each{|k,v| z3.gsub!(/#{k}/, "#{v}")} if !z3.nil? && z3.match(/[０-９]/)
   	numbers.each{|k,v| z4.gsub!(/#{k}/, "#{v}")} if !z4.nil? && z4.match(/[０-９]/)
-  	errors.add(:zip3, I18n.t('activerecord.errors.messages.blank')) if z3.blank?
-  	errors.add(:zip4, I18n.t('activerecord.errors.messages.blank')) if z4.blank?
-  	errors.add(:zip3, I18n.t('error.message.must_be_digits',:no=>3)) unless z3.match(/^\d\d\d$/) unless errors.on(:z3)
-  	errors.add(:zip4, I18n.t('error.message.must_be_digits',:no=>4)) unless z4.match(/^\d\d\d\d$/) unless errors.on(:z4)
+  	errors.add(:zip, I18n.t('activerecord.errors.messages.blank')) if z3.blank? && z4.blank?
+  	errors.add(:zip, I18n.t('error.message.must_be_digits',:no1=>3,:no2=>4)) unless z3.match(/^\d\d\d$/) && z4.match(/^\d\d\d\d$/) unless errors.on(:zip)
   	
   	address = Address.find_by_zip( z3+z4 )
-  	unless address.nil?
+  	if address.nil?
+  		errors.add(:zip, I18n.t('error.message.zip_code_does_not_exist')) unless errors.on(:zip)
+  	else
   		self.prefecture = address.prefecture
   		self.ward_area = address.ward + address.area
 		end

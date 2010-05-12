@@ -1,5 +1,6 @@
 @label_margin: 1em;
 @label_width: 12em;
+@left_margin: @label_margin+@label_width;
 @field_width: 20em;
 @dark_blue: #0055B5;
 
@@ -68,6 +69,10 @@ form.formtastic{
 					width:6em;
 					float:right;
 					margin-right:27em;
+				}
+				ul.errors{
+					margin:0.3em 0 0 @left_margin;
+					list-style:none;
 				}
 			}
 			li.clear{

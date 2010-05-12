@@ -9,11 +9,12 @@
 <%= f.input :mob_email, :label => t(:mob_email) %>
 <%= f.input :home_tel, :label => t(:home_tel), :input_html => { :class => :non_japanese } %>
 <%= f.input :mob_tel, :label => t(:mob_tel), :input_html => { :class => :non_japanese } %>
-<li class="string required" id="user_zip_input">
+<li class="string required <%= user.errors.on(:zip) ? "error" : "" %>" id="user_zip_input">
 	<%= f.label :zip3, t(:zip) %>
 	<%= f.text_field :zip3, { :maxlength => 3 } %> –
 	<%= f.text_field :zip4, { :maxlength => 4 } %>
 	<%= submit_tag t(:generate), :name => 'user[generate_address]', :id=>'generate' %>
+	<%= f.inline_errors_for :zip %>
 </li>
 <% if false %>
 <%= f.input :zip3, :label => t(:zip), :input_html => { :maxlength => 3, :class => :non_japanese } %>

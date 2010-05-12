@@ -15,9 +15,6 @@ class UsersController < ApplicationController
     	#@user = User.new( :zip3 => params[:user][:zip3] )
     	#@user.save!
     	unless @user.must_be_a_zip_code(params[:user][:zip3],params[:user][:zip4])
-    		flash[:error] = "That zip code does not exist."
-    		@user.zip3 = ""
-    		@user.zip4 = ""
     		@user.prefecture = ""
     		@user.ward_area = ""
     		@user.building_room = ""
@@ -41,9 +38,6 @@ class UsersController < ApplicationController
     	#@user = User.new( :zip3 => params[:user][:zip3] )
     	#@user.save!
     	unless @user.must_be_a_zip_code(params[:user][:zip3],params[:user][:zip4])
-    		flash[:error] = "That zip code does not exist."
-    		@user.zip3 = ""
-    		@user.zip4 = ""
     		@user.prefecture = ""
     		@user.ward_area = ""
     		@user.building_room = ""    		

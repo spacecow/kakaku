@@ -37,27 +37,29 @@ Examples:
 @zip
 Scenario Outline: Zip error
 When I go to the signup page
-	And I fill in "Zip Code" with "<input_zip3>"
-	And I fill in "–" with "<input_zip4>"
+	And I fill in "user_zip3" with "<input_zip3>"
+	And I fill in "user_zip4" with "<input_zip4>"
 	And I press "Generate"
-Then I should see "<error_zip3>" as error message for user zip3
-	And I should see "<error_zip4>" as error message for user zip4
-	And the "Zip Code" field should contain "<output_zip3>"
-	And the "–" field should contain "<output_zip4>"
+Then I should see "<error_zip>" as error message for user zip
+	And the "user_zip3" field should contain "<output_zip3>"
+	And the "user_zip4" field should contain "<output_zip4>"
 Examples:
-|	input_zip3	|	error_zip3				|	output_zip3	|	input_zip4	|	error_zip4				|	output_zip4	|
-|							|	can't be blank		|							|							|	can't be blank		|							|
-|	9８					|	must be 3 digits	|	98					|	d１２３				|	must be 4 digits	|	d123				|
-|	１２３					|										|	123					|	４５６７				|										|	4567				|
+|	input_zip3	|	input_zip4	|	error_zip								|	output_zip3	|	output_zip4	|
+|							|							|	can't be blank					|							|							|
+|	98					|	d123				|	must be 3x4 digits			|	98					|	d123				|
+|	123					|	1２					|	must be 3x4 digits			|	123					|	12					|
+|	1２					|	1234				|	must be 3x4 digits			|	12					|	1234				|
+|	1２３					|	1234				|	zip code does not exist	|	123					|	1234				|
 
 @ok-zip
 Scenario: If a correct zip is filled in, so will the corresponding address
-Given an address exists with zip: "9800815", prefecture: "宮城県", ward: "Aoba-ku", area: "Kadan"
+Given an address exists with zip: "9800815", prefecture: "宮城県", ward: "青葉区", area: "花壇"
 When I go to the signup page
-	And I fill in "Zip Code" with "980"
-	And I fill in "–" with "0815"
+	And I fill in "user_zip3" with "980"
+	And I fill in "user_zip4" with "0815"
 	And I press "Generate"
-Then the "Ward/Area" field should contain "Aoba-kuKadan"
+Then "宮城県" should be selected in the "Prefecture" field
+	And the "Ward/Area" field should contain "青葉区花壇"
 
 @address
 Scenario: Address error
@@ -179,3 +181,6 @@ Examples:
 |	input		|	output											|
 |					|	can't be blank							|
 |	secret	|	doesn't match confirmation	|
+
+@pending
+Scenario: Eliminate "Generate" button with AJAX
