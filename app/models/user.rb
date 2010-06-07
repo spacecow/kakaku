@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :resets
+  belongs_to :address
   
   attr_accessible :username, :pc_email, :mob_email, :password, :password_confirmation, :question, :alt_question, :answer, :answer_confirmation, :first_name, :last_name, :first_name_kana, :last_name_kana, :male, :home_tel, :mob_tel, :generate_address, :prefecture, :zip3, :zip4, :ward_area, :birth, :building_room
   
@@ -85,6 +86,7 @@ class User < ActiveRecord::Base
   	if address.nil?
   		errors.add(:zip, I18n.t('error.message.zip_code_does_not_exist')) unless errors.on(:zip)
   	else
+  		p "#{address.zip} #{address.prefecture} #{address.ward} #{address.area}"
   		self.prefecture = address.prefecture
   		self.ward_area = address.ward + address.area
 		end

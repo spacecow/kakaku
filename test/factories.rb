@@ -19,8 +19,5 @@ Factory.define :user do |f|
 	f.last_name_kana "ラスト"
 	f.first_name "First"
 	f.last_name "Last"
-	f.zip3 "123"
-	f.zip4 "4567"
-	f.prefecture "uppland"
-	f.ward_area "stockholm"
+	f.user {|u| u.association( :address, :zip => "1234567" ) }
 end

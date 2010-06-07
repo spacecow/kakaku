@@ -1,4 +1,6 @@
 class Address < ActiveRecord::Base
+	has_many :users
+	
 	def self.generate_default_csv
 		generate_csv( 'data/ken.utf' )
 	end

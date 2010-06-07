@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100314031925) do
+ActiveRecord::Schema.define(:version => 20100607080017) do
 
   create_table "addresses", :force => true do |t|
     t.string "zip"
@@ -58,13 +58,10 @@ ActiveRecord::Schema.define(:version => 20100314031925) do
     t.string   "mob_tel"
     t.string   "mob_email"
     t.string   "pc_email"
-    t.string   "zip3"
-    t.string   "zip4"
-    t.string   "prefecture"
-    t.string   "ward_area"
     t.string   "building_room"
     t.date     "birth"
     t.string   "fax"
+    t.integer  "address_id"
   end
 
 end
