@@ -2,14 +2,14 @@ class User < ActiveRecord::Base
   has_many :resets
   belongs_to :address
   
-  attr_accessible :username, :pc_email, :mob_email, :password, :password_confirmation, :question, :alt_question, :answer, :answer_confirmation, :first_name, :last_name, :first_name_kana, :last_name_kana, :male, :home_tel, :mob_tel, :generate_address, :prefecture, :zip3, :zip4, :ward_area, :birth, :building_room
+  attr_accessible :username, :pc_email, :mob_email, :password, :password_confirmation, :question, :alt_question, :answer, :answer_confirmation, :first_name, :last_name, :first_name_kana, :last_name_kana, :male, :home_tel, :mob_tel, :generate_address, :zip3, :zip4, :birth, :building_room
   
   attr_accessor :password
   before_save :prepare_password
   before_save :set_roles
   before_save :set_question
   
-  validates_presence_of :username, :first_name, :last_name, :first_name_kana, :last_name_kana, :prefecture, :ward_area
+  validates_presence_of :username, :first_name, :last_name, :first_name_kana, :last_name_kana
   validate :both_question_and_alternative_question_cannot_be_blank
   validate :both_question_and_alternative_question_cannot_be_filled_in
   validate :both_emails_cannot_be_blank
@@ -26,7 +26,8 @@ class User < ActiveRecord::Base
   validates_confirmation_of :answer  
   validates_length_of :password, :minimum => 4, :allow_blank => true
   validates_inclusion_of :male, :in => [false, true], :message => I18n.t('activerecord.errors.messages.blank')
-	validate :must_be_a_zip_code
+	#validate :must_be_a_zip_code
+	validates_associated :address
 
 	ROLES = %w[registrant]
 	QUESTIONS = %w(q1 q2 q3 q4 q5 q6 q7 q8 q9 q10 q11 q12 q13 q14 q15 q16 qalt)

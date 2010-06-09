@@ -7,9 +7,14 @@ class UsersController < ApplicationController
   
   def new
   	@questions = User::QUESTIONS.map{|e| t(e)}.zip( User::QUESTIONS )
+  	@user.build_address
+  	p @user.address
   end
   
   def create
+  	p params[:user]
+  	p @user.address
+
   	@questions = User::QUESTIONS.map{|e| t(e)}.zip( User::QUESTIONS )
     if !params[:user][:generate_address].nil?
     	#@user = User.new( :zip3 => params[:user][:zip3] )

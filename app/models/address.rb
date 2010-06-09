@@ -1,5 +1,10 @@
 class Address < ActiveRecord::Base
 	has_many :users
+	accepts_nested_attributes_for :users
+	  
+	def zip
+		p "hej"
+	end
 	
 	def self.generate_default_csv
 		generate_csv( 'data/ken.utf' )

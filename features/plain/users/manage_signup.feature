@@ -33,7 +33,7 @@ Then I should see "Sign up" as title
   
 @signup
 Scenario Outline: Sign up
-Given an address exists with zip: "4910002", prefecture: "愛知県", ward: "Some City", area: "Some Island"
+#Given an address exists with zip: "4910002", prefecture: "愛知県", ward: "Some City", area: "Some Island"
 When I go to the signup page
 	And I fill in "Last Name" with "Space"
 	And I fill in "First Name" with "Cow"
@@ -45,8 +45,9 @@ When I go to the signup page
 	And I select "1" from "user_birth_3i"
 	And I fill in "Email Address" with "spacecow@space.com"	
 	And I fill in "Telephone (home)*" with "123456"
-	And I fill in field "user_zip3" with "491"
-	And I fill in field "user_zip4" with "0002"
+	#And I fill in field "user_zip3" with "491"
+	#And I fill in field "user_zip4" with "0002"
+	And I fill in "Zip Code" with "1234567"
 	And I fill in "user_building_room" with "A building 45"
 	And I fill in "Username" with "johan"
 	And I fill in "Password" with "secret"
@@ -56,11 +57,10 @@ When I go to the signup page
 	And I fill in "Security Answer" with "I am not going to tell you that!"
 	And I fill in "Answer Confirmation" with "I am not going to tell you that!"
 	And I press "Sign up"
-	And I press "Sign up"
+	#And I press "Sign up"
 Then I should be redirected to the root page
 	And I should see "Thank you for signing up! You are now logged in." as notice flash message
-	And a user should exist with last_name: "Space", first_name: "Cow", male: true, pc_email: "spacecow@space.com", username: "johan", pc_email: "spacecow@space.com", home_tel: "123456", zip3: "491", zip4: "0002", ward_area: "Some CitySome Island", question: "<saved_question>", prefecture: "愛知県", last_name_kana: "スペース", first_name_kana: "カオ", birth: "1978-6-1", building_room: "A building 45"
-	
+	And a user should exist with last_name: "Space", first_name: "Cow", male: true, pc_email: "spacecow@space.com", username: "johan", pc_email: "spacecow@space.com", home_tel: "123456", question: "<saved_question>", last_name_kana: "スペース", first_name_kana: "カオ", birth: "1978-6-1", building_room: "A building 45"
 Examples:
 |	question 																		|	alt_question			| saved_question		|
 |	Where did you spend your childhood summers?	|										|	q1								|
