@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :resets
   belongs_to :address
+  accepts_nested_attributes_for :address
   
   attr_accessible :username, :pc_email, :mob_email, :password, :password_confirmation, :question, :alt_question, :answer, :answer_confirmation, :first_name, :last_name, :first_name_kana, :last_name_kana, :male, :home_tel, :mob_tel, :generate_address, :zip3, :zip4, :birth, :building_room
   
@@ -26,7 +27,6 @@ class User < ActiveRecord::Base
   validates_confirmation_of :answer  
   validates_length_of :password, :minimum => 4, :allow_blank => true
   validates_inclusion_of :male, :in => [false, true], :message => I18n.t('activerecord.errors.messages.blank')
-	#validate :must_be_a_zip_code
 	validates_associated :address
 
 	ROLES = %w[registrant]
@@ -74,24 +74,6 @@ class User < ActiveRecord::Base
     return if awr.blank?
     create_new_salt
     self.answer_hash = User.encrypted_answer( self.answer, self.answer_salt )
-  end
-
-  def must_be_a_zip_code( z3=zip3, z4=zip4 )
-  	numbers = {"０"=>"0", "１"=>"1", "２"=>"2", "３"=>"3", "４"=>"4", "５"=>"5", "６"=>"6", "７"=>"7", "８"=>"8", "９"=>"9"}
-  	numbers.each{|k,v| z3.gsub!(/#{k}/, "#{v}")} if !z3.nil? && z3.match(/[０-９]/)
-  	numbers.each{|k,v| z4.gsub!(/#{k}/, "#{v}")} if !z4.nil? && z4.match(/[０-９]/)
-  	errors.add(:zip, I18n.t('activerecord.errors.messages.blank')) if z3.blank? && z4.blank?
-  	errors.add(:zip, I18n.t('error.message.must_be_digits',:no1=>3,:no2=>4)) unless z3.match(/^\d\d\d$/) && z4.match(/^\d\d\d\d$/) unless errors.on(:zip)
-  	
-  	address = Address.find_by_zip( z3+z4 )
-  	if address.nil?
-  		errors.add(:zip, I18n.t('error.message.zip_code_does_not_exist')) unless errors.on(:zip)
-  	else
-  		p "#{address.zip} #{address.prefecture} #{address.ward} #{address.area}"
-  		self.prefecture = address.prefecture
-  		self.ward_area = address.ward + address.area
-		end
-		!address.nil?
   end
 
 	def display( text )

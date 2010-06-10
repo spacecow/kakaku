@@ -19,5 +19,5 @@ Factory.define :user do |f|
 	f.last_name_kana "ラスト"
 	f.first_name "First"
 	f.last_name "Last"
-	f.user {|u| u.association( :address, :zip => "1234567" ) }
+	f.address {|u| u.association( :address, :zip => "1234567" ) }
 end

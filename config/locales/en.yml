@@ -93,13 +93,13 @@ en:
     provide_password: "Please provide your old password."
     used_token: "This pass key has already been used."
     username_does_not_exist: "The username does not exist."
-    zip_code_does_not_exist: "Zip code does not exist."
     message:
       does_not_exist: "does not exist"
       both_blank: "can't both be blank"
       both_filled_in: "can't both be filled in"
       must_be_kana: "must be given in katakana"
       must_be_digits: "must be {{no1}}x{{no2}} digits"
+      zip_code_does_not_exist: "zip code does not exist"
   message:
     already_account?: "Already have an account?"
     answer_is_secret: "Be aware of that this answer should be as secret as your password."

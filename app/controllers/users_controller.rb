@@ -7,25 +7,29 @@ class UsersController < ApplicationController
   
   def new
   	@questions = User::QUESTIONS.map{|e| t(e)}.zip( User::QUESTIONS )
-  	@user.build_address
-  	p @user.address
+  	@user.address ||= Address.new
+  	#p @user.address
   end
-  
+    
   def create
-  	p params[:user]
-  	p @user.address
+  	#p params[:user][:address_attributes]
+  	#@user.address ||= Address.new
+		@user = User.new( params[:user] )
+		@user.address ||= Address.new
+		@user.address.attributes = params[:user][:address_attributes]
 
   	@questions = User::QUESTIONS.map{|e| t(e)}.zip( User::QUESTIONS )
     if !params[:user][:generate_address].nil?
     	#@user = User.new( :zip3 => params[:user][:zip3] )
     	#@user.save!
-    	unless @user.must_be_a_zip_code(params[:user][:zip3],params[:user][:zip4])
-    		@user.prefecture = ""
-    		@user.ward_area = ""
-    		@user.building_room = ""
-  		end
+    	@user.address.must_be_a_zip_code
+    		#@user.prefecture = ""
+    		#@user.ward_area = ""
+    		#@user.building_room = ""
+  		#end
     	render :action => 'new'
     elsif @user.save
+    	p @user.address
       session[:user_id] = @user.id
       flash[:notice] = t('message.signup_thanks')+" "+t('message.logged_in')
       redirect_to root_url

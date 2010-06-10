@@ -12,17 +12,14 @@
 <% f.fields_for :address do |f2| -%>
 <li class="string required <%= user.errors.on(:zip) ? "error" : "" %>" id="user_zip_input">
 	<%= f2.label :zip, t(:zip) %>
-	<%= f2.text_field :zip, { :maxlength => 3 } %> –
-	<%# f.text_field :zip4, { :maxlength => 4 } %>
-	<%# submit_tag t(:generate), :name => 'user[generate_address]', :id=>'generate' %>
-	<%= f.inline_errors_for :zip %>
+	<%= f2.text_field :zip3, { :maxlength => 3 } %> –
+	<%= f2.text_field :zip4, { :maxlength => 4 } %>
+	<%= submit_tag t(:generate), :name => 'user[generate_address]', :id=>'generate' %>
+	<%= f2.inline_errors_for :zip %>
 </li>
-<% end %>
-<% f.fields_for :address do |f2| -%>
 	<%= f2.input :prefecture, :label => t(:prefecture), :as=>:select, :collection => User::PREFECTURES %>
 	<%# f2.input :ward_area, :label => t(:ward_area) %>
 <% end -%>
-
 <% if false %>
 <%= f.input :zip3, :label => t(:zip), :input_html => { :maxlength => 3, :class => :non_japanese } %>
 <%= f.input :zip4, :label=> '–', :input_html => { :maxlength => 4, :class => :non_japanese }, :required => false %>

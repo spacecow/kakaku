@@ -47,7 +47,8 @@ When I go to the signup page
 	And I fill in "Telephone (home)*" with "123456"
 	#And I fill in field "user_zip3" with "491"
 	#And I fill in field "user_zip4" with "0002"
-	And I fill in "Zip Code" with "1234567"
+	And I fill in "user_address_attributes_zip3" with "123"
+	And I fill in "user_address_attributes_zip4" with "4567"
 	And I fill in "user_building_room" with "A building 45"
 	And I fill in "Username" with "johan"
 	And I fill in "Password" with "secret"
@@ -61,6 +62,7 @@ When I go to the signup page
 Then I should be redirected to the root page
 	And I should see "Thank you for signing up! You are now logged in." as notice flash message
 	And a user should exist with last_name: "Space", first_name: "Cow", male: true, pc_email: "spacecow@space.com", username: "johan", pc_email: "spacecow@space.com", home_tel: "123456", question: "<saved_question>", last_name_kana: "スペース", first_name_kana: "カオ", birth: "1978-6-1", building_room: "A building 45"
+	And an address should exist
 Examples:
 |	question 																		|	alt_question			| saved_question		|
 |	Where did you spend your childhood summers?	|										|	q1								|
