@@ -59,7 +59,7 @@ When I go to the signup page
 	And I press "Sign up"
 Then I should be redirected to the root page
 	And I should see "Thank you for signing up! You are now logged in." as notice flash message
-	And a user should exist with last_name: "Space", first_name: "Cow", male: true, pc_email: "spacecow@space.com", username: "johan", pc_email: "spacecow@space.com", home_tel: "123456", zip3: "491", zip4: "0002", ward_area: "Some CitySome Island", question: "<saved_question>", prefecture: "愛知県", last_name_kana: "スペース", first_name_kana: "カオ", birth: "1978-6-1", building_room: "A building 45"
+	And a user should exist with last_name: "Space", first_name: "Cow", male: true, username: "johan", pc_email: "spacecow@space.com", home_tel: "123456", zip3: "491", zip4: "0002", ward_area: "Some CitySome Island", question: "<saved_question>", prefecture: "愛知県", last_name_kana: "スペース", first_name_kana: "カオ", birth: "1978-6-1", building_room: "A building 45"
 	
 Examples:
 |	question 																		|	alt_question			| saved_question		|

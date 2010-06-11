@@ -58,13 +58,13 @@ ActiveRecord::Schema.define(:version => 20100314031925) do
     t.string   "mob_tel"
     t.string   "mob_email"
     t.string   "pc_email"
+    t.string   "building_room"
+    t.date     "birth"
+    t.string   "fax"
     t.string   "zip3"
     t.string   "zip4"
     t.string   "prefecture"
     t.string   "ward_area"
-    t.string   "building_room"
-    t.date     "birth"
-    t.string   "fax"
   end
 
 end

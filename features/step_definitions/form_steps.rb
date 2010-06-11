@@ -47,13 +47,15 @@ Then /^nothing should be selected in the "(.*)" (?:box|field)$/ do |select_id|
 end
 
 Then /^"(.*)" should be selected in the "(.*)" (?:box|field|menu)$/ do |option_text,select_id| 
-  field = field_labeled(select_id) 
+  begin
+  	field = field_labeled(select_id) 
+	rescue Webrat::NotFoundError
+		field = field_with_id(select_id) 
+	end
   selected_value = field.value[0] 
   state = :nothing_selected 
   field.options.each do |option|
     if option.element.to_html =~ /selected/ 
-      p option
-      p "yey!"
       state = :something_selected
       option.element.inner_html.should == option_text 
     end

@@ -7,6 +7,7 @@ Factory.define :reset do |f|
 end
 
 Factory.define :user do |f|
+	Address.create!( :zip=>"1234567", :prefecture=>"Default prefecture", :ward=>"Default ward", :area=>"Default area" ) if Address.find_by_zip( "1234567" ).nil?
 	f.sequence(:username){|n| "username#{n}" }
 	f.password "secret"
 	f.sequence(:mob_tel){|n| "#{n}" }

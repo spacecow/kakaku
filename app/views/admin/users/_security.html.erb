@@ -1,9 +1,0 @@
-<div class="legend"><%= t('message.select_id_and_password') %></div>
-<%= f.input :username, :label => t(:username), :input_html => { :class => :non_japanese } %>
-<%= f.input :password, :label => t(:password) %>
-<%= f.input :password_confirmation, :label => t(:password_confirmation) %>
-<div class="legend"><%= t('message.forgot_id_or_password') %></div>
-<%= f.input :question, :label => t(:security_question), :as=>:select, :collection => @questions %>
-<%= f.input :alt_question, :label => t(:alt_security_question) %>
-<%= f.input :answer, :label => t(:security_answer), :hint=>t('message.answer_is_secret'), :as=>:password %>
-<%= f.input :answer_confirmation, :label => t(:security_answer_confirmation), :as => :password %>
