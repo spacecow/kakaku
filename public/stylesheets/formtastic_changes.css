@@ -3,6 +3,7 @@
   height: 0;
   overflow: hidden;
 }
+form.formtastic fieldset.buttons { padding-left: 13em; }
 form.formtastic fieldset ol { width: 60em; }
 form.formtastic fieldset ol div.legend {
   width: 27.8em;
@@ -65,4 +66,7 @@ form.formtastic fieldset ol li.string input.non_japanese { ime-mode: disabled; }
 form.formtastic fieldset ol li.password input { width: 20em; }
 form.formtastic fieldset ol li.password input.non_japanese { ime-mode: disabled; }
 form.formtastic fieldset ol li.radio fieldset ol { margin-bottom: 0; }
-form.formtastic fieldset ol li.radio fieldset ol li { margin: 0; }
+form.formtastic fieldset ol li.radio fieldset ol li {
+  margin: 0;
+  width: auto;
+}

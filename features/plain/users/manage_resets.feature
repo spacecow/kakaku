@@ -37,6 +37,3 @@ When I generate a reset token for "johan"
 	And I browse to the change password page with that reset
 	And I press "Change"
 Then I should see "Password cannot be left blank." as error flash message
-
-Scenario: Be able to change password when you are logged in (NOT IMPLEMENTED)
-Given not implemented

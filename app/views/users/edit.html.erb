@@ -1,3 +1,4 @@
+<%= javascript_include_tag "submit_button_focus.js" %>
 <% title t(:editing, :object=>t(:user)) %>
 <% subtitle "" %>
 
@@ -10,4 +11,9 @@
 	<% end %>	
 <%- end -%>
 
-<%= javascript_tag "$('user_username').focus()" %>
+<div id="bottom_links">
+	<%= link_to t(:show,:object=>t(:profile)), @user if can? :show, @user %>
+	<%= link_to t(:security_settings), security_user_path( @user ) if can? :security, @user %>
+	<%= link_to t(:delete,:object=>t(:user)), confirm_delete_admin_user_path( @user ), :method => :delete, :confirm => "Are you sure?" if can? :delete, @user %>
+	<%= link_to t(:list,:object=>t('users.title')), admin_users_path if can? :index, User %>
+</div>

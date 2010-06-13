@@ -29,11 +29,11 @@ Scenario: Links from a user's show page as admin
 Given a user exists
 	And I am logged in as admin
 When I go to the show page of that user
-Then I should see links "Edit, Delete, List Users" at the bottom of the page
+Then I should see links "Edit Profile, Security Settings, Delete User, List Users" at the bottom of the page
 
 @links
 Scenario: A regular user links from his own show page
 Given a user exists with username: "ernie"
 	And I am logged in as "ernie"
 When I go to the show page of that user
-Then I should see links "Edit, Security Settings" at the bottom of the page
+Then I should see links "Edit Profile, Security Settings" at the bottom of the page

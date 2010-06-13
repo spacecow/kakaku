@@ -2,6 +2,6 @@
 <% subtitle "Are you sure you want to delete user '"+@user.username+"'?" %>
 
 <% form_for @user, :url => admin_user_path( @user ), :html => { :method => :delete } do |f| -%>
-  <%= submit_tag t(:delete) %>
+  <%= submit_tag t(:delete_single) %>
   or <%= link_to t(:cancel), :back %>
 <% end -%>

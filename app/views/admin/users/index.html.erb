@@ -14,11 +14,7 @@
 			<tr>
 				<td><%= user.username %></td>
 				<td><%= user.pc_email %></td>
-				<td>
-					<%= link_to t(:show), user_path(user.username) %>
-					<%= link_to t(:edit), edit_user_path(user) %>
-					<%= link_to t(:security_settings), security_user_path(user) %>
-					<%= link_to t(:delete), confirm_delete_admin_user_path(user), :method => :delete, :confirm => "Are you sure?" %></td>
+				<td><%= link_to t(:info), user_path(user.username) %> <%= link_to t(:edit_single), edit_user_path(user) %> <%= link_to t(:security_settings), security_user_path(user) %> <%= link_to t(:delete_single), confirm_delete_admin_user_path(user), :method => :delete, :confirm => "Are you sure?" %></td>
 			</tr>
 		<% end %>
 	</tbody>

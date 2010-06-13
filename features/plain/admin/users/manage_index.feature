@@ -6,7 +6,7 @@ Then I should see "Users" as title
 	And I should see "List of user accounts" as subtitle
 	And I should see users table
 	|	Username	|	Email						|	Actions 					|
-	|	ernie			|	ernie@gmail.com	|	Info Edit Delete	|
+	|	ernie			|	ernie@gmail.com	|	Info Edit Security Settings Delete	|
 
 @links
 Scenario: Links on users' index page
@@ -17,11 +17,14 @@ When I go to the admin users page
 Then I should be redirected to the show page of user with username: "ernie"
 When I go to the admin users page
 	And I follow "Edit" within the users table
-Then I should be redirected to the admin edit page of that user
+Then I should be redirected to the edit page of that user
+When I go to the admin users page
+	And I follow "Security Settings" within the users table
+Then I should be redirected to the security page of that user
 When I go to the admin users page
 	And I follow "Delete" within the users table
 Then I should be redirected to the admin users page
-	And I should see "Successfully deleted User" as notice flash message
+	And I should see "Successfully deleted user" as notice flash message
 	And 0 users should exist
 
 @allow-rescue

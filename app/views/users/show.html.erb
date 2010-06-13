@@ -19,8 +19,8 @@
 </div>
 
 <div id="bottom_links">
-	<%= link_to t(:edit), edit_user_path( @user ) if can? :edit, @user %>
+	<%= link_to t(:edit,:object=>t(:profile)), edit_user_path( @user ) if can? :edit, @user %>
 	<%= link_to t(:security_settings), security_user_path( @user ) if can? :security, @user %>
-	<%= link_to t(:delete), admin_user_path( @user ), :method=>:delete, :confirm=>t('message.sure?') if can? :destroy, @user %>
-	<%= link_to t(:list, :object=>t('users.title')), admin_users_path if can? :index, User %>
+	<%= link_to t(:delete,:object=>t(:user)), confirm_delete_admin_user_path( @user ), :method => :delete, :confirm => "Are you sure?" if can? :delete, @user %>
+	<%= link_to t(:list,:object=>t('users.title')), admin_users_path if can? :index, User %>
 </div>

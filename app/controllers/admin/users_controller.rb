@@ -6,23 +6,23 @@ class Admin::UsersController < ApplicationController
   	@users = User.all
   end
 
-  def edit
-  	@questions = User::QUESTIONS.map{|e| t(e)}.zip( User::QUESTIONS )
-  end
+  #def edit
+  #	@questions = User::QUESTIONS.map{|e| t(e)}.zip( User::QUESTIONS )
+  #end
 
-	def update
-		if @user.update_attributes( params[:user] )
-			flash[:notice] = t('notice.updated', :object=>t(:user))
-			redirect_to admin_users_path
-		else
-			@questions = User::QUESTIONS.map{|e| t(e)}.zip( User::QUESTIONS )
-			render :action => :edit
-		end
-	end
+	#def update
+	#	if @user.update_attributes( params[:user] )
+	#		flash[:notice] = t('notice.updated', :object=>t(:user).downcase)
+	#		redirect_to admin_users_path
+	#	else
+	#		@questions = User::QUESTIONS.map{|e| t(e)}.zip( User::QUESTIONS )
+	#		render :action => :edit
+	#	end
+	#end
 	
 	def destroy
 		@user.destroy
-		flash[:notice] = t('notice.deleted', :object=>t(:user))
+		flash[:notice] = t('notice.deleted', :object=>t(:user).downcase)
 		redirect_to admin_users_path
 	end
 	

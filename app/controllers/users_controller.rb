@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     	@user.zip4 = params[:user][:zip4]
     	render :action => 'edit'
     elsif @user.update_attributes( params[:user] )
-			flash[:notice] = t('notice.updated', :object=>t(:user))
+			flash[:notice] = t('notice.updated', :object=>t(:user).downcase)
 			redirect_to @user
 		else
 			@questions = User::QUESTIONS.map{|e| t(e)}.zip( User::QUESTIONS )
@@ -97,7 +97,7 @@ class UsersController < ApplicationController
 		if user || admin?
 			if @user.update_attributes( params[:user] )
 				if admin?
-					flash[:notice] = t('notice.updated_what_for', :object=>t(:security_settings), :person=>@user.username)
+					flash[:notice] = t('notice.updated_what_for', :object=>t(:security_settings).downcase, :person=>@user.username)
 				else
 					flash[:notice] = t('notice.updated', :object=>t(:security_settings))
 				end
